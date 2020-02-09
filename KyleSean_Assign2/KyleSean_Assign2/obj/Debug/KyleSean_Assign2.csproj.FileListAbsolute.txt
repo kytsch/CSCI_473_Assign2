@@ -1,0 +1,9 @@
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.exe.config
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.exe
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.pdb
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csprojAssemblyReference.cache
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.Form1.resources
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.Properties.Resources.resources
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csproj.GenerateResource.cache
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.exe
+C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.pdb
