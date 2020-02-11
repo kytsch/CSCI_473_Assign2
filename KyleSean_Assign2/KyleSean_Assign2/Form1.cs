@@ -262,24 +262,9 @@ namespace KyleSean_Assign2
 
                         if (tempHouse != null)  //protect against failed typecast
                         {
-                            //string output;  //store string to be added to textbox
 
-                            //check if the House is ForSale
-                            //if (tempHouse.ForSale)
-                            //{
-                            //output = String.Format("{0,29} {1,2}", tempHouse.StreetAddr, "*");
+                            residence_listbox.Items.Add(tempHouse);  //utilize overloaded ToString to directly add tempHouse to residence listbox
 
-                            //residence_listbox.Items.Add(output);
-
-                            residence_listbox.Items.Add(tempHouse);
-
-                            // }
-                            //  else  //the House is not ForSale
-                            //  {
-                            //      output = String.Format("{0,29}", tempHouse.StreetAddr);
-
-                            //      residence_listbox.Items.Add(output);
-                            //  }
                         }
                         else
                         {
@@ -302,21 +287,9 @@ namespace KyleSean_Assign2
 
                         if (tempApt != null)  //protect against failed typecast
                         {
-                            string output;  //store string to be added to textbox
 
-                            //check if the Apartment is ForSale
-                            if (tempApt.ForSale)
-                            {
-                                output = String.Format("{0,20} {1,3} {2,4} {3,2}", tempApt.StreetAddr, "#", tempApt.Unit, "*");
+                            residence_listbox.Items.Add(tempApt);  //utilize ToString to add tempApt directly to residence listbox
 
-                                residence_listbox.Items.Add(output);
-                            }
-                            else  //the Apartment is not for sale
-                            {
-                                output = String.Format("{0,20} {1,3} {2,4}", tempApt.StreetAddr, "#", tempApt.Unit);
-
-                                residence_listbox.Items.Add(output);
-                            }
                         }
                         else
                         {
@@ -331,22 +304,8 @@ namespace KyleSean_Assign2
                 foreach (Person res in DeKalb.Residents)
                 {
 
-                    string formatString;  //store formatted string for output to resident textbox
+                    person_listbox.Items.Add(res);  //utiilize ToString to add res directly to person listbox
 
-                    //if the residents occupation is short, print the whole string
-                    if (res.Occupation.Length < 13)
-                    {
-                        formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), res.Occupation);
-                    }
-                    else  //if the residents occupation is long, shorten it
-                    {
-                        string substr = res.Occupation.Substring(0, 12);  //get shortened occupation for output
-
-                        //use shortened occupation and formatting
-                        formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), substr + "...");
-                    }
-
-                    person_listbox.Items.Add(formatString);
                 }
 
             }
@@ -373,21 +332,9 @@ namespace KyleSean_Assign2
 
                     if (tempHouse != null)  //protect against failed typecast
                     {
-                        string output;  //store formatted string to be added to the residence listbox
 
-                        //check if the House is ForSale
-                        if (tempHouse.ForSale)
-                        {
-                            output = String.Format("{0,29} {1,2}", tempHouse.StreetAddr, "*");
+                        residence_listbox.Items.Add(tempHouse);  //utilize overloaded ToString to add tempHouse directly to residence listbox
 
-                            residence_listbox.Items.Add(output);
-                        }
-                        else  //the House is not for sale
-                        {
-                            output = String.Format("{0,29}", tempHouse.StreetAddr);
-
-                            residence_listbox.Items.Add(output);
-                        }
                     }
                     else
                     {
@@ -412,21 +359,8 @@ namespace KyleSean_Assign2
                     if (tempApt != null)   //protect against failed typecast
                     {
 
-                        string output;  //store formatted string to be added to residence textbox
+                        residence_listbox.Items.Add(tempApt);  //utilize overloaded ToString to directly add tempApt to residence listbox
 
-                        //check if the Apartment is ForSale
-                        if (tempApt.ForSale)
-                        {
-                            output = String.Format("{0,20} {1,3} {2,4} {3,2}", tempApt.StreetAddr, "#", tempApt.Unit, "*");
-
-                            residence_listbox.Items.Add(output);
-                        }
-                        else  //the Apartment is not for sale
-                        {
-                            output = String.Format("{0,20} {1,3} {2,4}", tempApt.StreetAddr, "#", tempApt.Unit);
-
-                            residence_listbox.Items.Add(output);
-                        }
                     }
                     else
                     {
@@ -440,33 +374,11 @@ namespace KyleSean_Assign2
             foreach (Person res in Sycamore.Residents)
             {
 
-                string formatString;  //store formatting string to be added to resident textbox
+                person_listbox.Items.Add(res);  //utilize overloaded ToString to directly add res to person listbox
 
-                //if the residents occupation is short, print the whole string
-                if(res.Occupation.Length < 13)
-                {
-                    formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), res.Occupation);
-                }
-                else  //if the residents occupation is long, shorten it
-                {
-                    string substr = res.Occupation.Substring(0, 12);  //get shortened occupation for output
-
-                    //use shortened occupation and formatting
-                    formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), substr + "...");
-                }
-
-                person_listbox.Items.Add(formatString);  //add the formatted string to the text box
             }
         }
 
-        private void person_listbox_Click(object sender, EventArgs e)
-        {
-
-            output_listbox.Items.Clear();
-
-            output_listbox.Items.Add(residence_listbox.GetItemText(residence_listbox.SelectedItem));
-            //MessageBox.Show(text);
-        }
 
         private void toggle_for_sale_button_Click(object sender, EventArgs e)
         {
@@ -519,6 +431,60 @@ namespace KyleSean_Assign2
 
         }
 
-        
+        private void person_listbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Person anon = person_listbox.SelectedItem as Person;  //typecast the selected item as a Person 
+
+            if (anon != null)  //protect against failed typecast
+            {
+
+                output_listbox.Items.Clear();  //clear the output listbox of any other output previously shown
+
+                //display basic person information
+                output_listbox.Items.Add(String.Format("{0}, {1}, Age ({2}), Occupation: {3}, who resides at:", anon.LastName, anon.FirstName,
+                                         (DateTime.Now.Year - anon.Birthday.Year), anon.Occupation));
+
+                //if DeKalb Community selected, loop through the persons residence ids first, then loop through the Properties to
+                //find a match. When found, list the address of the property
+                if (dekalb_radio_button.Checked)
+                {
+                    foreach (uint id in anon.ResidenceIds)
+                    {
+
+                        foreach (Property prop in DeKalb.Props)
+                        {
+                            if (id == prop.PropID)
+                            {
+                                output_listbox.Items.Add(String.Format("{0, 8}{1, -20}", "", prop.StreetAddr));
+                            }
+                        }
+                    }
+                }
+
+                //else if the Sycamore Community selected, loop through the persons residence ids first, then loop through the Properties to
+                //find a match. When found, list the address of the property
+                else if (sycamore_radio_button.Checked)
+                {
+                    foreach (uint id in anon.ResidenceIds)
+                    {
+
+                        foreach (Property prop in Sycamore.Props)
+                        {
+                            if (id == prop.PropID)
+                            {
+                                output_listbox.Items.Add(String.Format("{0, 8}{1, -20}", "", prop.StreetAddr));
+                            }
+                        }
+                    }
+                }
+                else  //if a community is somehow not selected
+                {
+                    MessageBox.Show("You must have a Community selected.");
+                }
+
+                output_listbox.Items.Add("");
+                output_listbox.Items.Add("### END OF OUTPUT ###");
+            }
+        }
     }
 }
