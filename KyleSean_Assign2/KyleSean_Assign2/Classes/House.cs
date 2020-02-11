@@ -107,6 +107,24 @@ namespace KyleSean_Assign2
             floors = newFloors;
         }
 
+        public override string ToString()
+        {
+
+            if(this.ForSale == true)
+            {
+
+                return String.Format("{0,29} {1,2}", this.StreetAddr, "*");
+
+            }
+            else
+            {
+
+                return String.Format("{0,29}", this.StreetAddr);
+
+            }
+
+        }
+
     }
 
 }

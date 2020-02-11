@@ -28,6 +28,9 @@ namespace KyleSean_Assign2
             readApartmentFile(Sycamore, "Sycamore", "a.txt");
             readHouseFile(Sycamore, "Sycamore", "r.txt", ids);
             readPersonFile(Sycamore, "Sycamore", "p.txt");
+
+            dekalb_radio_button.Checked = true;
+
         }
 
         /*********************************************************************************
@@ -237,108 +240,117 @@ namespace KyleSean_Assign2
 
         }
 
-        private void dekalb_radio_button_Click(object sender, EventArgs e)
+        private void dekalb_radio_button_CheckedChanged(object sender, EventArgs e)
         {
-            output_listbox.Items.Add("The residents and properties of DeKalb are now listed.");
 
-            residence_listbox.Items.Clear();  //reset the text so only DeKalb Properties will be listed
+            if(dekalb_radio_button.Checked == true) { 
 
-            residence_listbox.Items.Add("Houses:");
-            residence_listbox.Items.Add("----------------");
+                output_listbox.Items.Add("The residents and properties of DeKalb are now listed.");
 
-            foreach(Property prop in DeKalb.Props)
-            {
+                residence_listbox.Items.Clear();  //reset the text so only DeKalb Properties will be listed
 
-                //check if the property object is a House
-                if (prop.GetType() == typeof(House))
+                residence_listbox.Items.Add("Houses:");
+                residence_listbox.Items.Add("----------------");
+
+                foreach (Property prop in DeKalb.Props)
                 {
-                    House tempHouse = prop as House;  //typecast prop as a House object
 
-                    if (tempHouse != null)  //protect against failed typecast
+                    //check if the property object is a House
+                    if (prop.GetType() == typeof(House))
                     {
-                        string output;  //store string to be added to textbox
+                        House tempHouse = prop as House;  //typecast prop as a House object
 
-                        //check if the House is ForSale
-                        if (tempHouse.ForSale)
+                        if (tempHouse != null)  //protect against failed typecast
                         {
-                            output = String.Format("{0,29} {1,2}", tempHouse.StreetAddr, "*");
+                            //string output;  //store string to be added to textbox
 
-                            residence_listbox.Items.Add(output);
+                            //check if the House is ForSale
+                            //if (tempHouse.ForSale)
+                            //{
+                            //output = String.Format("{0,29} {1,2}", tempHouse.StreetAddr, "*");
+
+                            //residence_listbox.Items.Add(output);
+
+                            residence_listbox.Items.Add(tempHouse);
+
+                            // }
+                            //  else  //the House is not ForSale
+                            //  {
+                            //      output = String.Format("{0,29}", tempHouse.StreetAddr);
+
+                            //      residence_listbox.Items.Add(output);
+                            //  }
                         }
-                        else  //the House is not ForSale
+                        else
                         {
-                            output = String.Format("{0,29}", tempHouse.StreetAddr);
-
-                            residence_listbox.Items.Add(output);
+                            throw new ArgumentException("[Property]: argument is not a House.");
                         }
-                    }
-                    else
-                    {
-                        throw new ArgumentException("[Property]: argument is not a House.");
                     }
                 }
+
+                residence_listbox.Items.Add("");
+                residence_listbox.Items.Add("Apartments:");
+                residence_listbox.Items.Add("----------------");
+
+                foreach (Property prop in DeKalb.Props)
+                {
+
+                    //Only print the Apartment objects in the DeKalb Properties
+                    if (prop.GetType() == typeof(Apartment))
+                    {
+                        Apartment tempApt = prop as Apartment;  //typecast Property as an Apartment object
+
+                        if (tempApt != null)  //protect against failed typecast
+                        {
+                            string output;  //store string to be added to textbox
+
+                            //check if the Apartment is ForSale
+                            if (tempApt.ForSale)
+                            {
+                                output = String.Format("{0,20} {1,3} {2,4} {3,2}", tempApt.StreetAddr, "#", tempApt.Unit, "*");
+
+                                residence_listbox.Items.Add(output);
+                            }
+                            else  //the Apartment is not for sale
+                            {
+                                output = String.Format("{0,20} {1,3} {2,4}", tempApt.StreetAddr, "#", tempApt.Unit);
+
+                                residence_listbox.Items.Add(output);
+                            }
+                        }
+                        else
+                        {
+                            throw new ArgumentException("[Property]: argument is not an Apartment.");
+                        }
+                    }
+                }
+
+                person_listbox.Items.Clear();  //reset text so only the desired Communities residents are displayed
+
+                //loop through each resident that lives in DeKalb
+                foreach (Person res in DeKalb.Residents)
+                {
+
+                    string formatString;  //store formatted string for output to resident textbox
+
+                    //if the residents occupation is short, print the whole string
+                    if (res.Occupation.Length < 13)
+                    {
+                        formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), res.Occupation);
+                    }
+                    else  //if the residents occupation is long, shorten it
+                    {
+                        string substr = res.Occupation.Substring(0, 12);  //get shortened occupation for output
+
+                        //use shortened occupation and formatting
+                        formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), substr + "...");
+                    }
+
+                    person_listbox.Items.Add(formatString);
+                }
+
             }
 
-            residence_listbox.Items.Add("");
-            residence_listbox.Items.Add("Apartments:");
-            residence_listbox.Items.Add("----------------");
-
-            foreach (Property prop in DeKalb.Props)
-            {
-
-                //Only print the Apartment objects in the DeKalb Properties
-                if (prop.GetType() == typeof(Apartment))
-                {
-                    Apartment tempApt = prop as Apartment;  //typecast Property as an Apartment object
-
-                    if (tempApt != null)  //protect against failed typecast
-                    {
-                        string output;  //store string to be added to textbox
-
-                        //check if the Apartment is ForSale
-                        if (tempApt.ForSale)
-                        {
-                            output = String.Format("{0,20} {1,3} {2,4} {3,2}", tempApt.StreetAddr, "#", tempApt.Unit, "*");
-
-                            residence_listbox.Items.Add(output);
-                        }
-                        else  //the Apartment is not for sale
-                        {
-                            output = String.Format("{0,20} {1,3} {2,4}", tempApt.StreetAddr, "#", tempApt.Unit);
-
-                            residence_listbox.Items.Add(output);
-                        }
-                    }
-                    else
-                    {
-                        throw new ArgumentException("[Property]: argument is not an Apartment.");
-                    }
-                }
-            }
-
-            person_listbox.Items.Clear();  //reset text so only the desired Communities residents are displayed
-
-            //loop through each resident that lives in DeKalb
-            foreach(Person res in DeKalb.Residents)
-            {
-
-                string formatString;  //store formatted string for output to resident textbox
-
-                //if the residents occupation is short, print the whole string
-                if(res.Occupation.Length < 13)
-                {
-                    formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), res.Occupation);
-                }
-                else  //if the residents occupation is long, shorten it
-                {
-                    string substr = res.Occupation.Substring(0, 12);  //get shortened occupation for output
-
-                    //use shortened occupation and formatting
-                    formatString = String.Format("{0,-10} {1,-3} {2,-13}", res.FirstName, (DateTime.Now.Year - res.Birthday.Year), substr + "...");
-                }
-
-                person_listbox.Items.Add(formatString);
-            }
         }
 
         private void sycamore_radio_button_Click(object sender, EventArgs e)
@@ -455,5 +467,58 @@ namespace KyleSean_Assign2
             output_listbox.Items.Add(residence_listbox.GetItemText(residence_listbox.SelectedItem));
             //MessageBox.Show(text);
         }
+
+        private void toggle_for_sale_button_Click(object sender, EventArgs e)
+        {
+
+            //Make sure that something has actually been selected
+            if(residence_listbox.SelectedItem != null)
+            {
+
+                Property prop = residence_listbox.SelectedItem as Property;
+
+                prop.ForSale = !prop.ForSale;
+
+                int index = residence_listbox.Items.IndexOf(residence_listbox.SelectedItem);
+
+                residence_listbox.Items.RemoveAt(index);
+
+                residence_listbox.Items.Insert(index, prop);
+
+                residence_listbox.SelectedIndex = index;
+
+                /*
+                if (residence_listbox.SelectedItem.ToString().Length > 30)
+                {
+                    
+                    string notForSaleString = residence_listbox.SelectedItem.ToString().Substring(0, 29);
+
+                    int index = residence_listbox.Items.IndexOf(residence_listbox.SelectedItem);
+
+                    residence_listbox.Items.RemoveAt(index);
+
+                    residence_listbox.Items.Insert(index, notForSaleString);
+
+                    
+
+            }
+            else
+                {
+
+                    
+
+                }
+            */
+            }
+            else
+            {
+
+                output_listbox.Items.Add("No residence is currently selected");
+
+            }
+
+        }
+
+        
     }
 }
