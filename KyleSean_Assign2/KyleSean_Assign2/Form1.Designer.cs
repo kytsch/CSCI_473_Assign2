@@ -83,9 +83,9 @@
             this.communities_groupbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.communities_groupbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.communities_groupbox.Location = new System.Drawing.Point(17, 16);
-            this.communities_groupbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.communities_groupbox.Margin = new System.Windows.Forms.Padding(4);
             this.communities_groupbox.Name = "communities_groupbox";
-            this.communities_groupbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.communities_groupbox.Padding = new System.Windows.Forms.Padding(4);
             this.communities_groupbox.Size = new System.Drawing.Size(205, 114);
             this.communities_groupbox.TabIndex = 0;
             this.communities_groupbox.TabStop = false;
@@ -96,7 +96,7 @@
             this.sycamore_radio_button.AutoSize = true;
             this.sycamore_radio_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sycamore_radio_button.Location = new System.Drawing.Point(8, 71);
-            this.sycamore_radio_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sycamore_radio_button.Margin = new System.Windows.Forms.Padding(4);
             this.sycamore_radio_button.Name = "sycamore_radio_button";
             this.sycamore_radio_button.Size = new System.Drawing.Size(122, 29);
             this.sycamore_radio_button.TabIndex = 1;
@@ -110,7 +110,7 @@
             this.dekalb_radio_button.AutoSize = true;
             this.dekalb_radio_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dekalb_radio_button.Location = new System.Drawing.Point(8, 34);
-            this.dekalb_radio_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dekalb_radio_button.Margin = new System.Windows.Forms.Padding(4);
             this.dekalb_radio_button.Name = "dekalb_radio_button";
             this.dekalb_radio_button.Size = new System.Drawing.Size(98, 29);
             this.dekalb_radio_button.TabIndex = 11;
@@ -125,7 +125,7 @@
             this.toggle_for_sale_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.toggle_for_sale_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toggle_for_sale_button.Location = new System.Drawing.Point(243, 43);
-            this.toggle_for_sale_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toggle_for_sale_button.Margin = new System.Windows.Forms.Padding(4);
             this.toggle_for_sale_button.Name = "toggle_for_sale_button";
             this.toggle_for_sale_button.Size = new System.Drawing.Size(148, 33);
             this.toggle_for_sale_button.TabIndex = 1;
@@ -139,7 +139,7 @@
             this.add_resident_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_resident_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_resident_button.Location = new System.Drawing.Point(429, 43);
-            this.add_resident_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_resident_button.Margin = new System.Windows.Forms.Padding(4);
             this.add_resident_button.Name = "add_resident_button";
             this.add_resident_button.Size = new System.Drawing.Size(148, 33);
             this.add_resident_button.TabIndex = 2;
@@ -153,7 +153,7 @@
             this.buy_property_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buy_property_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buy_property_button.Location = new System.Drawing.Point(243, 84);
-            this.buy_property_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buy_property_button.Margin = new System.Windows.Forms.Padding(4);
             this.buy_property_button.Name = "buy_property_button";
             this.buy_property_button.Size = new System.Drawing.Size(148, 33);
             this.buy_property_button.TabIndex = 3;
@@ -166,7 +166,7 @@
             this.remove_resident_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove_resident_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_resident_button.Location = new System.Drawing.Point(429, 84);
-            this.remove_resident_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.remove_resident_button.Margin = new System.Windows.Forms.Padding(4);
             this.remove_resident_button.Name = "remove_resident_button";
             this.remove_resident_button.Size = new System.Drawing.Size(148, 33);
             this.remove_resident_button.TabIndex = 4;
@@ -189,9 +189,9 @@
             this.add_resident_groupbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_resident_groupbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.add_resident_groupbox.Location = new System.Drawing.Point(17, 155);
-            this.add_resident_groupbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_resident_groupbox.Margin = new System.Windows.Forms.Padding(4);
             this.add_resident_groupbox.Name = "add_resident_groupbox";
-            this.add_resident_groupbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_resident_groupbox.Padding = new System.Windows.Forms.Padding(4);
             this.add_resident_groupbox.Size = new System.Drawing.Size(265, 342);
             this.add_resident_groupbox.TabIndex = 2;
             this.add_resident_groupbox.TabStop = false;
@@ -204,7 +204,7 @@
             this.add_new_resident_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_resident_button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.add_new_resident_button.Location = new System.Drawing.Point(144, 293);
-            this.add_new_resident_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_new_resident_button.Margin = new System.Windows.Forms.Padding(4);
             this.add_new_resident_button.Name = "add_new_resident_button";
             this.add_new_resident_button.Size = new System.Drawing.Size(100, 28);
             this.add_new_resident_button.TabIndex = 8;
@@ -228,7 +228,7 @@
             this.new_resident_residence_textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_resident_residence_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_resident_residence_textBox.Location = new System.Drawing.Point(9, 247);
-            this.new_resident_residence_textBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_resident_residence_textBox.Margin = new System.Windows.Forms.Padding(4);
             this.new_resident_residence_textBox.Name = "new_resident_residence_textBox";
             this.new_resident_residence_textBox.Size = new System.Drawing.Size(249, 23);
             this.new_resident_residence_textBox.TabIndex = 6;
@@ -250,7 +250,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(8, 183);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(249, 23);
             this.textBox1.TabIndex = 4;
@@ -271,7 +271,7 @@
             this.new_resident_occupation_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_resident_occupation_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_resident_occupation_textbox.Location = new System.Drawing.Point(8, 121);
-            this.new_resident_occupation_textbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_resident_occupation_textbox.Margin = new System.Windows.Forms.Padding(4);
             this.new_resident_occupation_textbox.Name = "new_resident_occupation_textbox";
             this.new_resident_occupation_textbox.Size = new System.Drawing.Size(249, 23);
             this.new_resident_occupation_textbox.TabIndex = 2;
@@ -292,7 +292,7 @@
             this.new_resident_name_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_resident_name_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_resident_name_textbox.Location = new System.Drawing.Point(8, 59);
-            this.new_resident_name_textbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_resident_name_textbox.Margin = new System.Windows.Forms.Padding(4);
             this.new_resident_name_textbox.Name = "new_resident_name_textbox";
             this.new_resident_name_textbox.Size = new System.Drawing.Size(249, 23);
             this.new_resident_name_textbox.TabIndex = 0;
@@ -317,9 +317,9 @@
             this.add_property_groupbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_property_groupbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.add_property_groupbox.Location = new System.Drawing.Point(313, 155);
-            this.add_property_groupbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_property_groupbox.Margin = new System.Windows.Forms.Padding(4);
             this.add_property_groupbox.Name = "add_property_groupbox";
-            this.add_property_groupbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_property_groupbox.Padding = new System.Windows.Forms.Padding(4);
             this.add_property_groupbox.Size = new System.Drawing.Size(265, 342);
             this.add_property_groupbox.TabIndex = 3;
             this.add_property_groupbox.TabStop = false;
@@ -330,7 +330,7 @@
             this.new_property_garage_checkBox.AutoSize = true;
             this.new_property_garage_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_property_garage_checkBox.Location = new System.Drawing.Point(9, 249);
-            this.new_property_garage_checkBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_property_garage_checkBox.Margin = new System.Windows.Forms.Padding(4);
             this.new_property_garage_checkBox.Name = "new_property_garage_checkBox";
             this.new_property_garage_checkBox.Size = new System.Drawing.Size(95, 24);
             this.new_property_garage_checkBox.TabIndex = 23;
@@ -342,7 +342,7 @@
             this.new_property_floors_numericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_property_floors_numericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_property_floors_numericUpDown.Location = new System.Drawing.Point(192, 194);
-            this.new_property_floors_numericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_property_floors_numericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.new_property_floors_numericUpDown.Name = "new_property_floors_numericUpDown";
             this.new_property_floors_numericUpDown.Size = new System.Drawing.Size(49, 26);
             this.new_property_floors_numericUpDown.TabIndex = 22;
@@ -363,7 +363,7 @@
             this.new_property_baths_numericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_property_baths_numericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_property_baths_numericUpDown.Location = new System.Drawing.Point(105, 194);
-            this.new_property_baths_numericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_property_baths_numericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.new_property_baths_numericUpDown.Name = "new_property_baths_numericUpDown";
             this.new_property_baths_numericUpDown.Size = new System.Drawing.Size(49, 26);
             this.new_property_baths_numericUpDown.TabIndex = 20;
@@ -384,7 +384,7 @@
             this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown1.Location = new System.Drawing.Point(12, 193);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(49, 26);
             this.numericUpDown1.TabIndex = 18;
@@ -405,7 +405,7 @@
             this.new_property_square_footage_numericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_property_square_footage_numericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_property_square_footage_numericUpDown.Location = new System.Drawing.Point(12, 122);
-            this.new_property_square_footage_numericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_property_square_footage_numericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.new_property_square_footage_numericUpDown.Name = "new_property_square_footage_numericUpDown";
             this.new_property_square_footage_numericUpDown.Size = new System.Drawing.Size(111, 26);
             this.new_property_square_footage_numericUpDown.TabIndex = 16;
@@ -437,7 +437,7 @@
             this.new_property_apt_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.new_property_apt_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_property_apt_textbox.Location = new System.Drawing.Point(211, 60);
-            this.new_property_apt_textbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.new_property_apt_textbox.Margin = new System.Windows.Forms.Padding(4);
             this.new_property_apt_textbox.Name = "new_property_apt_textbox";
             this.new_property_apt_textbox.Size = new System.Drawing.Size(47, 23);
             this.new_property_apt_textbox.TabIndex = 12;
@@ -458,7 +458,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(9, 60);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(193, 23);
             this.textBox3.TabIndex = 10;
@@ -470,7 +470,7 @@
             this.add_new_property_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_property_button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.add_new_property_button.Location = new System.Drawing.Point(141, 293);
-            this.add_new_property_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add_new_property_button.Margin = new System.Windows.Forms.Padding(4);
             this.add_new_property_button.Name = "add_new_property_button";
             this.add_new_property_button.Size = new System.Drawing.Size(100, 28);
             this.add_new_property_button.TabIndex = 9;
@@ -496,7 +496,7 @@
             this.person_listbox.FormattingEnabled = true;
             this.person_listbox.ItemHeight = 17;
             this.person_listbox.Location = new System.Drawing.Point(596, 43);
-            this.person_listbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.person_listbox.Margin = new System.Windows.Forms.Padding(4);
             this.person_listbox.Name = "person_listbox";
             this.person_listbox.Size = new System.Drawing.Size(289, 429);
             this.person_listbox.TabIndex = 7;
@@ -508,10 +508,11 @@
             this.residence_listbox.FormattingEnabled = true;
             this.residence_listbox.ItemHeight = 17;
             this.residence_listbox.Location = new System.Drawing.Point(893, 43);
-            this.residence_listbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.residence_listbox.Margin = new System.Windows.Forms.Padding(4);
             this.residence_listbox.Name = "residence_listbox";
             this.residence_listbox.Size = new System.Drawing.Size(383, 429);
             this.residence_listbox.TabIndex = 8;
+            this.residence_listbox.SelectedIndexChanged += new System.EventHandler(this.residence_listbox_SelectedIndexChanged);
             // 
             // person_label
             // 
@@ -567,7 +568,7 @@
             this.Controls.Add(this.add_resident_button);
             this.Controls.Add(this.toggle_for_sale_button);
             this.Controls.Add(this.communities_groupbox);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

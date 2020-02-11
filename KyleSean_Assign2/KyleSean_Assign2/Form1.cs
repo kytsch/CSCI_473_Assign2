@@ -485,6 +485,233 @@ namespace KyleSean_Assign2
                 output_listbox.Items.Add("");
                 output_listbox.Items.Add("### END OF OUTPUT ###");
             }
+            else
+            {
+                throw new ArgumentException("[Person]: argument is not a Person.");
+            }
+        }
+
+        private void residence_listbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            output_listbox.Items.Clear();
+
+            //Check if DeKalb Community is selected
+            if (dekalb_radio_button.Checked)
+            {
+
+                //check if the selected item is a House
+                if (residence_listbox.SelectedItem.GetType() == typeof(House))
+                {
+                    House tempHouse = residence_listbox.SelectedItem as House;  //typecast selected item as a House
+
+                    if(tempHouse != null)  //protect against failed typecasting
+                    {
+                        
+                        //loop through each person in the DeKalb Community to find the correct owner of the property and display the House information
+                        foreach(Person anon in DeKalb.Residents)
+                        {
+                            if(tempHouse.OwnerID == anon.Id)
+                            {
+
+                                output_listbox.Items.Add(String.Format("Residents living at {0}, {1}, owned by {2}, {3}:", tempHouse.StreetAddr, tempHouse.City,
+                                                                                                                            anon.LastName, anon.FirstName));
+                                output_listbox.Items.Add("----------------------------------------------------------------------");
+                            }
+                        }
+
+                        //loop through each person in the DeKalb Community to find who lives at this property
+                        foreach(Person anon in DeKalb.Residents)
+                        {
+
+                            //loop through the persons residence IDs
+                            foreach(uint id in anon.ResidenceIds)
+                            {
+
+                                //if the person has an ID that matches the property ID, list them as a resident
+                                if(id == tempHouse.PropID)
+                                {
+
+                                    //format the first and last name for the output listbox
+                                    string formatName = String.Format("{0}, {1}", anon.LastName, anon.FirstName);
+
+                                    output_listbox.Items.Add(String.Format("{0,-27}{1,3}{2,30}", formatName, (DateTime.Now.Year - anon.Birthday.Year), anon.Occupation));
+                                }
+                            }
+                        }
+
+                        output_listbox.Items.Add("");
+                        output_listbox.Items.Add("### END OF OUTPUT ###");
+                    }
+                    else
+                    {
+                        throw new ArgumentException("[House]: argument is not an House.");
+                    }
+                }
+
+                //check if the selected item is an Apartment 
+                else if (residence_listbox.SelectedItem.GetType() == typeof(Apartment))
+                {
+
+                    Apartment tempApt = residence_listbox.SelectedItem as Apartment;  //typecast selected item as an Apartment
+
+                    if (tempApt != null)  //protect against failed typecasting
+                    {
+
+                        //loop through each person in the DeKalb Community to find the correct owner of the Apartment and display the Apartment information
+                        foreach (Person anon in DeKalb.Residents)
+                        {
+                            if (tempApt.OwnerID == anon.Id)
+                            {
+
+                                output_listbox.Items.Add(String.Format("Residents living at {0} # {1}, {2}, owned by {3}, {4}:", tempApt.StreetAddr, tempApt.Unit, tempApt.City,
+                                                                                                                            anon.LastName, anon.FirstName));
+                                output_listbox.Items.Add("----------------------------------------------------------------------");
+                            }
+                        }
+
+                        //loop through each person in the DeKalb Community to find who lives at this property
+                        foreach (Person anon in DeKalb.Residents)
+                        {
+
+                            //loop through the persons residence IDs
+                            foreach (uint id in anon.ResidenceIds)
+                            {
+
+                                //if the person has an ID that matches the property ID, list them as a resident
+                                if (id == tempApt.PropID)
+                                {
+
+                                    //format the first and last name for the output listbox
+                                    string formatName = String.Format("{0}, {1}", anon.LastName, anon.FirstName);
+
+                                    output_listbox.Items.Add(String.Format("{0,-27}{1,3}{2,30}", formatName, (DateTime.Now.Year - anon.Birthday.Year), anon.Occupation));
+                                }
+                            }
+                        }
+
+                        output_listbox.Items.Add("");
+                        output_listbox.Items.Add("### END OF OUTPUT ###");
+                    }
+                    else
+                    {
+                        throw new ArgumentException("[House]: argument is not an House.");
+                    }
+                }
+                else  //user may have selected a header or blank line.
+                {
+                    return;
+                }
+            }
+
+            //Check if Sycamore Community is selected 
+            else if(sycamore_radio_button.Checked)
+            {
+
+                //check if the selected item is a House
+                if (residence_listbox.SelectedItem.GetType() == typeof(House))
+                {
+
+                    House tempHouse = residence_listbox.SelectedItem as House;  //typecast selected item as a House
+
+                    if (tempHouse != null)  //protect against failed typecasting
+                    {
+
+                        //loop through each person in the Sycamore Community to find the correct owner of the property and display the House information
+                        foreach (Person anon in Sycamore.Residents)
+                        {
+                            if (tempHouse.OwnerID == anon.Id)
+                            {
+
+                                output_listbox.Items.Add(String.Format("Residents living at {0}, {1}, owned by {2}, {3}:", tempHouse.StreetAddr, tempHouse.City,
+                                                                                                                            anon.LastName, anon.FirstName));
+                                output_listbox.Items.Add("----------------------------------------------------------------------");
+                            }
+                        }
+
+                        //loop through each person in the Sycamore Community to find who lives at this property
+                        foreach (Person anon in Sycamore.Residents)
+                        {
+
+                            //loop through the persons residence IDs
+                            foreach (uint id in anon.ResidenceIds)
+                            {
+
+                                //if the person has an ID that matches the property ID, list them as a resident
+                                if (id == tempHouse.PropID)
+                                {
+
+                                    //format the first and last name for the output listbox
+                                    string formatName = String.Format("{0}, {1}", anon.LastName, anon.FirstName);
+
+                                    output_listbox.Items.Add(String.Format("{0,-27}{1,3}{2,30}", formatName, (DateTime.Now.Year - anon.Birthday.Year), anon.Occupation));
+                                }
+                            }
+                        }
+
+                        output_listbox.Items.Add("");
+                        output_listbox.Items.Add("### END OF OUTPUT ###");
+                    }
+                    else
+                    {
+                        throw new ArgumentException("[House]: argument is not an House.");
+                    }
+                }
+
+                //check if the selected item is an Apartment 
+                else if (residence_listbox.SelectedItem.GetType() == typeof(Apartment))
+                {
+
+                    Apartment tempApt = residence_listbox.SelectedItem as Apartment;  //typecast selected item as an Apartment
+
+                    if (tempApt != null)  //protect against failed typecasting
+                    {
+
+                        //loop through each person in the DeKalb Community to find the correct owner of the property and display the Apartment information
+                        foreach (Person anon in Sycamore.Residents)
+                        {
+                            if (tempApt.OwnerID == anon.Id)
+                            {
+
+                                output_listbox.Items.Add(String.Format("Residents living at {0} # {1}, {2}, owned by {3}, {4}:", tempApt.StreetAddr, tempApt.Unit, tempApt.City,
+                                                                                                                            anon.LastName, anon.FirstName));
+                                output_listbox.Items.Add("----------------------------------------------------------------------");
+                            }
+                        }
+
+                        //loop through each person in the DeKalb Community to find who lives at this property
+                        foreach (Person anon in Sycamore.Residents)
+                        {
+
+                            //loop through the persons residence IDs
+                            foreach (uint id in anon.ResidenceIds)
+                            {
+
+                                //if the person has an ID that matches the property ID, list them as a resident
+                                if (id == tempApt.PropID)
+                                {
+
+                                    //format the first and last name for the output listbox
+                                    string formatName = String.Format("{0}, {1}", anon.LastName, anon.FirstName);
+
+                                    output_listbox.Items.Add(String.Format("{0,-27}{1,3}{2,30}", formatName, (DateTime.Now.Year - anon.Birthday.Year), anon.Occupation));
+                                }
+                            }
+                        }
+
+                        output_listbox.Items.Add("");
+                        output_listbox.Items.Add("### END OF OUTPUT ###");
+                    }
+                    else
+                    {
+                        throw new ArgumentException("[House]: argument is not an House.");
+                    }
+                }
+                else  //user may have selected a header or blank line.
+                {
+                    return;
+                }
+            }
         }
     }
 }
