@@ -90,5 +90,13 @@
   <ItemGroup>
     <Folder Include="Code\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DeKalb\a.txt" />
+    <Content Include="DeKalb\p.txt" />
+    <Content Include="DeKalb\r.txt" />
+    <Content Include="Sycamore\a.txt" />
+    <Content Include="Sycamore\p.txt" />
+    <Content Include="Sycamore\r.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

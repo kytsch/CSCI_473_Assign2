@@ -7,3 +7,12 @@ C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean
 C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csproj.GenerateResource.cache
 C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.exe
 C:\Users\Prips\source\repos\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.pdb
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.exe.config
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.exe
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.pdb
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csprojAssemblyReference.cache
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.Form1.resources
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.Properties.Resources.resources
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csproj.GenerateResource.cache
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.exe
+C:\Users\seank\OneDrive\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.pdb
