@@ -121,7 +121,17 @@ namespace KyleSean_Assign2
         public override string ToString()
         {
 
-            return FullName;
+            if (this.Occupation.Length < 13)
+            {
+                return String.Format("{0,-10} {1,-3} {2,-13}", this.FirstName, (DateTime.Now.Year - this.Birthday.Year), this.Occupation);
+            }
+            else  //if the residents occupation is long, shorten it
+            {
+                string substr = this.Occupation.Substring(0, 12);  //get shortened occupation for output
+
+                //use shortened occupation and formatting
+                return String.Format("{0,-10} {1,-3} {2,-13}", this.FirstName, (DateTime.Now.Year - this.Birthday.Year), substr + "...");
+            }
 
         }
 
@@ -162,7 +172,6 @@ namespace KyleSean_Assign2
             }
 
         }
-
 
     }
 

@@ -60,7 +60,18 @@ namespace KyleSean_Assign2
         public override string ToString()
         {
 
-            return this.StreetAddr + ", apt. " + unit;
+            if (this.ForSale == true)
+            {
+
+                return String.Format("{0,20} {1,3} {2,4} {3,2}", this.StreetAddr, "#", this.Unit, "*");
+
+            }
+            else
+            {
+
+                return String.Format("{0,20} {1,3} {2,4}", this.StreetAddr, "#", this.Unit);
+
+            }
 
         }
 
