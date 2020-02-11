@@ -21,6 +21,7 @@ namespace KyleSean_Assign2
         {
             InitializeComponent();
 
+            //Read the DeKalb and Sycamore house, apartment, and person files
             readApartmentFile(DeKalb, "DeKalb", "a.txt");
             readHouseFile(DeKalb, "DeKalb", "r.txt", ids);
             readPersonFile(DeKalb, "DeKalb", "p.txt");
@@ -264,7 +265,7 @@ namespace KyleSean_Assign2
 
                             residence_listbox.Items.Add(output);
                         }
-                        else
+                        else  //the House is not ForSale
                         {
                             output = String.Format("{0,29}", tempHouse.StreetAddr);
 
@@ -301,7 +302,7 @@ namespace KyleSean_Assign2
 
                             residence_listbox.Items.Add(output);
                         }
-                        else  
+                        else  //the Apartment is not for sale
                         {
                             output = String.Format("{0,20} {1,3} {2,4}", tempApt.StreetAddr, "#", tempApt.Unit);
 
@@ -349,23 +350,27 @@ namespace KyleSean_Assign2
             residence_listbox.Items.Add("Houses:");
             residence_listbox.Items.Add("----------------");
 
+            //loop through each Property in the Sycamore Community
             foreach (Property prop in Sycamore.Props)
             {
+
+                //check if the Property is a House
                 if (prop.GetType() == typeof(House))
                 {
-                    House tempHouse = prop as House;
+                    House tempHouse = prop as House;  //typecast the Property as a House
 
-                    if (tempHouse != null)
+                    if (tempHouse != null)  //protect against failed typecast
                     {
-                        string output;
+                        string output;  //store formatted string to be added to the residence listbox
 
+                        //check if the House is ForSale
                         if (tempHouse.ForSale)
                         {
                             output = String.Format("{0,29} {1,2}", tempHouse.StreetAddr, "*");
 
                             residence_listbox.Items.Add(output);
                         }
-                        else
+                        else  //the House is not for sale
                         {
                             output = String.Format("{0,29}", tempHouse.StreetAddr);
 
@@ -383,24 +388,28 @@ namespace KyleSean_Assign2
             residence_listbox.Items.Add("Apartments:");
             residence_listbox.Items.Add("----------------");
 
+            //loop through Properties in the Sycamore Community
             foreach (Property prop in Sycamore.Props)
             {
+
+                //check if the property is an Apartment 
                 if (prop.GetType() == typeof(Apartment))
                 {
-                    Apartment tempApt = prop as Apartment;
+                    Apartment tempApt = prop as Apartment;  //typecast the property as an Apartment 
 
-                    if (tempApt != null)
+                    if (tempApt != null)   //protect against failed typecast
                     {
 
-                        string output;
+                        string output;  //store formatted string to be added to residence textbox
 
+                        //check if the Apartment is ForSale
                         if (tempApt.ForSale)
                         {
                             output = String.Format("{0,20} {1,3} {2,4} {3,2}", tempApt.StreetAddr, "#", tempApt.Unit, "*");
 
                             residence_listbox.Items.Add(output);
                         }
-                        else
+                        else  //the Apartment is not for sale
                         {
                             output = String.Format("{0,20} {1,3} {2,4}", tempApt.StreetAddr, "#", tempApt.Unit);
 
