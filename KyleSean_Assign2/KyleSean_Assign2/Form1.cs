@@ -22,10 +22,10 @@ namespace KyleSean_Assign2
             InitializeComponent();
 
             //Read the DeKalb and Sycamore house, apartment, and person files
-            readApartmentFile(DeKalb, "DeKalb", "a.txt");
+            readApartmentFile(DeKalb, "DeKalb", "a.txt", ids);
             readHouseFile(DeKalb, "DeKalb", "r.txt", ids);
             readPersonFile(DeKalb, "DeKalb", "p.txt");
-            readApartmentFile(Sycamore, "Sycamore", "a.txt");
+            readApartmentFile(Sycamore, "Sycamore", "a.txt", ids);
             readHouseFile(Sycamore, "Sycamore", "r.txt", ids);
             readPersonFile(Sycamore, "Sycamore", "p.txt");
 
@@ -40,10 +40,11 @@ namespace KyleSean_Assign2
          Parameters : 1. comm - Community object have Apartment objects added to it
                       2. dir  - string representing the directory from which to read the file
                       3. file - string representing the name of the file to read
+                      4. ids  - Current in-use IDs
          Returns    : N/A
         *********************************************************************************/
 
-        public static void readApartmentFile(Community comm, string dir, string file)
+        public static void readApartmentFile(Community comm, string dir, string file, Dictionary<uint,uint> ids)
         {
             string input;
             uint inPropID;
@@ -91,6 +92,8 @@ namespace KyleSean_Assign2
                     comm.Props.Add(tempApartment);
 
                     input = inFile.ReadLine();  //read next line
+
+                    ids.Add(inPropID, inPropID);
                 }
             }
         }
@@ -884,19 +887,15 @@ namespace KyleSean_Assign2
                 uint newID = 0;
 
                 //Loops through the ID dictionary sequentially until it finds one that is not in use
-                foreach (UInt32 id in ids.Keys)
+                while (ids.ContainsKey(newID))
                 {
-
-                    if (id != newID)
-                    {
-
-                        break;
-
-                    }
 
                     newID++;
 
                 }
+
+
+                output_listbox.Items.Add("New ID set to " + newID);
 
                 //Add new ID value to dictionary so it can't be used again.
                 ids.Add(newID, newID);
@@ -905,6 +904,8 @@ namespace KyleSean_Assign2
                 if (new_property_apt_textbox.TextLength > 0)
                 {
 
+                    //If the DeKalb radio button is active, create an apartment with the correct community and zipcode.
+                    //Then, add it to the DeKalb community.
                     if (dekalb_radio_button.Checked == true)
                     {
 
@@ -913,6 +914,7 @@ namespace KyleSean_Assign2
                         DeKalb.addProperty(newApartment);
 
                     }
+                    //Sme as above, but for Sycamore.
                     else if (sycamore_radio_button.Checked == true)
                     {
 
@@ -1056,6 +1058,162 @@ namespace KyleSean_Assign2
 
             }
             //Otherwise, return true (passed).
+            return true;
+
+        }
+
+        private void add_new_resident_button_Click(object sender, EventArgs e)
+        {
+
+            if(checkResidentInput() == true)
+            {
+
+                //New ID value. Needs to be incremented to an unused ID first
+                uint newID = 0;
+
+                while (ids.ContainsKey(newID))
+                {
+
+                    newID++;
+
+                }
+
+                //Add new ID value to dictionary so it can't be used again.
+                ids.Add(newID, newID);
+
+                //New list of residences.
+                //Even though there will only be one property, the current constructor takes a list
+                List<uint> newResidenceIds = new List<uint>();
+
+                //Typecast the selected property as a Property so its ID can be fetched.
+                Property prop = new_resident_residence_comboBox.SelectedItem as Property;
+
+                //Add the property ID to the residence list.
+                newResidenceIds.Add(prop.PropID);
+
+                //Split the name into pieces so the first and last names can be filled
+                string[] name = new_resident_name_textbox.Text.Split(' ');
+
+                //Set the first name to the first entry in the name array, as it comes first.
+                string firstName = name[0];
+
+                //Create a new string for the last name.
+                string lastName = "";
+
+                //Since a last name can have multiple parts, take the rest of the name array's
+                //indices and build the last name.
+                for(int i = 1; i < name.Length; i++)
+                {
+
+                    lastName += name[i];
+
+                    //If there are more pieces of the last name, add a space.
+                    if(i < name.Length - 1)
+                    {
+
+                        lastName += " ";
+
+                    }
+
+                }
+
+                //Initialize the new person
+                Person newResident = new Person(newID, firstName, lastName, new_resident_occupation_textbox.Text, new_resident_birthday_dateTimePicker.Value, newResidenceIds);
+
+                //If the DeKalb radio button is active, add the new resident to the DeKalb community.
+                if (dekalb_radio_button.Checked == true)
+                {
+
+                    DeKalb.addResident(newResident);
+
+                }
+                //Same as above, but for Sycamore.
+                else if (sycamore_radio_button.Checked == true)
+                {
+                    Sycamore.addResident(newResident);
+
+                }
+                //Capture case where no radio buttons are active.
+                else
+                {
+
+                    MessageBox.Show("Neither of the communities are selected.\nPlease select a community to add the property to.", "Error");
+
+                }
+
+                //Clear and repopulate the person listbox to refresh it.
+                person_listbox.Items.Clear();
+                populatePersonListBox();
+
+            }
+
+        }
+
+        /*********************************************************************************
+         Method     : checkRedidentInput
+         Purpose    : Checks the current values in the new resident listbox and checks if
+                      they exist/if they hold correct values for their property
+         Parameters : N/A
+         Returns    : True if string passes, false if it fails
+        *********************************************************************************/
+        private bool checkResidentInput()
+        {
+
+            //Constructed output string.
+            //For each error, a new line is added to this string.
+            string errorOutput = "";
+
+            //Make sure that something is entered into the name field
+            if (new_resident_name_textbox.TextLength == 0)
+            {
+
+                errorOutput += "The new resident must have a name.\n";
+
+            }
+            //If the text in the name field is not separated somewhere by a space, then there is no last name.
+            //Currently, there needs to be a last name.
+            else if(new_resident_name_textbox.Text.Split(' ').Length < 2)
+            {
+
+                errorOutput += "The new resident must have a first and last name.\n";
+
+            }
+
+            //Make sure that the occupation field has been filled in.
+            if(new_resident_occupation_textbox.TextLength == 0)
+            {
+
+                errorOutput += "The new resident must have an occupation.\n";
+
+            }
+
+            //MAke sure that the set birthday has already happened.
+            if(new_resident_birthday_dateTimePicker.Value > DateTime.Now)
+            {
+
+                errorOutput += "The new resident must be born before the current time.\n";
+
+            }
+
+            //Make sure that the new resident actually lives somewhere.
+            if(new_resident_residence_comboBox.SelectedItem == null)
+            {
+
+                errorOutput += "The new resident must live in a property in order to be a resident.\n";
+
+            }
+
+            //If the error message has anything in it, display it and return false (failure)
+            if(errorOutput.Length > 0)
+            {
+
+                MessageBox.Show(errorOutput, "Invalid property values");
+
+                return false;
+
+            }
+
+            //Otherwise, return true (success)
             return true;
 
         }

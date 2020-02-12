@@ -59,7 +59,33 @@ namespace KyleSean_Assign2
 
             residenceIds = baseResId;
 
+            ids.Add(id, id);
+
         }
+
+        /*********************************************************************************
+         Method     : Person (form constructor)
+         Purpose    : Full constructor for a Person object that is more intuitive for the
+                      form input.
+         Parameters : 1. newId
+                      2. newFirstName
+                      3. newLastName
+                      4. newOccupation
+                      5. newBirthday
+                      6. newResidenceIds
+         Returns    : N/A
+        *********************************************************************************/
+        public Person(uint newId, string newFirstName, string newLastName, string newOccupation, DateTime newBirthday, List<uint>newResidenceIds)
+        {
+
+            id = newId;
+            firstName = newFirstName;
+            lastName = newLastName;
+            occupation = newOccupation;
+            birthday = newBirthday;
+            residenceIds = newResidenceIds;
+
+    }
 
         // *** Person Class Properties ***
         public uint Id
