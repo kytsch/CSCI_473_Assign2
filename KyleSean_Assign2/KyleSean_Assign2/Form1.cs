@@ -614,8 +614,6 @@ namespace KyleSean_Assign2
         private void residence_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            output_listbox.Items.Clear();
-
             //Check if DeKalb Community is selected
             if (dekalb_radio_button.Checked)
             {
@@ -623,6 +621,9 @@ namespace KyleSean_Assign2
                 //check if the selected item is a House
                 if (residence_listbox.SelectedItem.GetType() == typeof(House))
                 {
+
+                    output_listbox.Items.Clear();  //clear the output box only if a Property was selected
+
                     House tempHouse = residence_listbox.SelectedItem as House;  //typecast selected item as a House
 
                     if(tempHouse != null)  //protect against failed typecasting
@@ -672,6 +673,8 @@ namespace KyleSean_Assign2
                 //check if the selected item is an Apartment 
                 else if (residence_listbox.SelectedItem.GetType() == typeof(Apartment))
                 {
+
+                    output_listbox.Items.Clear();  //clear the output box only if a Property was selected
 
                     Apartment tempApt = residence_listbox.SelectedItem as Apartment;  //typecast selected item as an Apartment
 
@@ -732,6 +735,8 @@ namespace KyleSean_Assign2
                 if (residence_listbox.SelectedItem.GetType() == typeof(House))
                 {
 
+                    output_listbox.Items.Clear();  //clear the output box only if a Property was selected
+
                     House tempHouse = residence_listbox.SelectedItem as House;  //typecast selected item as a House
 
                     if (tempHouse != null)  //protect against failed typecasting
@@ -782,6 +787,8 @@ namespace KyleSean_Assign2
                 else if (residence_listbox.SelectedItem.GetType() == typeof(Apartment))
                 {
 
+                    output_listbox.Items.Clear();  //clear the output box only if a Property was selected
+
                     Apartment tempApt = residence_listbox.SelectedItem as Apartment;  //typecast selected item as an Apartment
 
                     if (tempApt != null)  //protect against failed typecasting
@@ -829,6 +836,7 @@ namespace KyleSean_Assign2
                 }
                 else  //user may have selected a header or blank line.
                 {
+                    output_listbox.Items.Add("You selected a blank line. Select a House/Apartment to view details.");
                     return;
                 }
             }
