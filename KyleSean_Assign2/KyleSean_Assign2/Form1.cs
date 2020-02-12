@@ -208,10 +208,202 @@ namespace KyleSean_Assign2
 
         }
 
-        private void fuckoff(object sender, EventArgs e)
+        /*********************************************************************************
+         Method     : populatePersonListBox
+         Purpose    : Populates the listbox that displays people with residents from
+                      the currently-selected community
+         Parameters : N/A
+         Returns    : N/A
+        *********************************************************************************/
+        private void populatePersonListBox()
         {
 
-            this.WindowState = FormWindowState.Maximized;
+            if (sycamore_radio_button.Checked == true)
+            {
+
+                foreach (Person res in Sycamore.Residents)
+                {
+
+                    person_listbox.Items.Add(res);  //utilize overloaded ToString to directly add res to person listbox
+
+                }
+
+            }
+            else
+            {
+
+                foreach (Person res in DeKalb.Residents)
+                {
+
+                    person_listbox.Items.Add(res);  //utilize overloaded ToString to directly add res to person listbox
+
+                }
+
+            }
+
+
+        }
+
+        /*********************************************************************************
+         Method     : populateResidenceListBox
+         Purpose    : Populates the listbox that displays residences with properties from
+                      the currently-selected community
+         Parameters : N/A
+         Returns    : N/A
+        *********************************************************************************/
+        private void populateResidenceListBox()
+        {
+
+            residence_listbox.Items.Add("Houses:");
+            residence_listbox.Items.Add("----------------");
+
+            if (sycamore_radio_button.Checked == true)
+            {
+
+                //loop through each Property in the Sycamore Community
+                foreach (Property prop in Sycamore.Props)
+                {
+
+                    //check if the Property is a House
+                    if (prop.GetType() == typeof(House))
+                    {
+                        House tempHouse = prop as House;  //typecast the Property as a House
+
+                        if (tempHouse != null)  //protect against failed typecast
+                        {
+
+                            residence_listbox.Items.Add(tempHouse);  //utilize overloaded ToString to add tempHouse directly to residence listbox
+
+                        }
+                        else
+                        {
+                            throw new ArgumentException("[Property]: argument is not a House.");
+                        }
+                    }
+                }
+
+                residence_listbox.Items.Add("");
+                residence_listbox.Items.Add("Apartments:");
+                residence_listbox.Items.Add("----------------");
+
+                //loop through Properties in the Sycamore Community
+                foreach (Property prop in Sycamore.Props)
+                {
+
+                    //check if the property is an Apartment 
+                    if (prop.GetType() == typeof(Apartment))
+                    {
+                        Apartment tempApt = prop as Apartment;  //typecast the property as an Apartment 
+
+                        if (tempApt != null)   //protect against failed typecast
+                        {
+
+                            residence_listbox.Items.Add(tempApt);  //utilize overloaded ToString to directly add tempApt to residence listbox
+
+                        }
+                        else
+                        {
+                            throw new ArgumentException("[Property]: argument is not an Apartment.");
+                        }
+                    }
+                }
+
+
+            }
+            else
+            {
+
+
+                //loop through each Property in the Sycamore Community
+                foreach (Property prop in DeKalb.Props)
+                {
+
+                    //check if the Property is a House
+                    if (prop.GetType() == typeof(House))
+                    {
+                        House tempHouse = prop as House;  //typecast the Property as a House
+
+                        if (tempHouse != null)  //protect against failed typecast
+                        {
+
+                            residence_listbox.Items.Add(tempHouse);  //utilize overloaded ToString to add tempHouse directly to residence listbox
+
+                        }
+                        else
+                        {
+                            throw new ArgumentException("[Property]: argument is not a House.");
+                        }
+                    }
+                }
+
+                residence_listbox.Items.Add("");
+                residence_listbox.Items.Add("Apartments:");
+                residence_listbox.Items.Add("----------------");
+
+                //loop through Properties in the DeKalb Community
+                foreach (Property prop in DeKalb.Props)
+                {
+
+                    //check if the property is an Apartment 
+                    if (prop.GetType() == typeof(Apartment))
+                    {
+                        Apartment tempApt = prop as Apartment;  //typecast the property as an Apartment 
+
+                        if (tempApt != null)   //protect against failed typecast
+                        {
+
+                            residence_listbox.Items.Add(tempApt);  //utilize overloaded ToString to directly add tempApt to residence listbox
+
+                        }
+                        else
+                        {
+                            throw new ArgumentException("[Property]: argument is not an Apartment.");
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+
+        /*********************************************************************************
+         Method     : populateNewResidentComboBox
+         Purpose    : Takes the property list from the currently-selected community and
+                      populates the new resident listbox's combobox with it
+         Parameters : N/A
+         Returns    : N/A
+        *********************************************************************************/
+        private void populateNewResidentComboBox()
+        {
+
+            //Populate the combobox with DeKalb properties if the DeKalb radio button is active.
+            if (dekalb_radio_button.Checked == true)
+            {
+
+                //Get each property from the DeKalb property list and add them to the combobox.
+                foreach (Property prop in DeKalb.Props)
+                {
+
+                    new_resident_residence_comboBox.Items.Add(prop);
+
+                }
+
+            }
+            //Populate the combobox with Sycamore properties if the Sycamore radio button is active.
+            //Using this instead of else for the case where neither radio button is active.
+            else if (sycamore_radio_button.Checked == true)
+            {
+
+                //Get each property from the Sycamore property list and add them to the combobox.
+                foreach (Property prop in Sycamore.Props)
+                {
+
+                    new_resident_residence_comboBox.Items.Add(prop);
+
+                }
+
+            }
 
         }
 
@@ -243,70 +435,42 @@ namespace KyleSean_Assign2
         private void dekalb_radio_button_CheckedChanged(object sender, EventArgs e)
         {
 
-            if(dekalb_radio_button.Checked == true) { 
+            if(dekalb_radio_button.Checked == true) {
+
+
+                person_listbox.Items.Clear();  //reset text so only the desired Communities residents are displayed
+                residence_listbox.Items.Clear(); //reset the text so only Sycamore Properties will be listed
+                new_resident_residence_comboBox.Items.Clear();
+
+                //Repopulate list and comboboxes with DeKalb properties
+                populatePersonListBox();
+                populateResidenceListBox();
+                populateNewResidentComboBox();
 
                 output_listbox.Items.Add("The residents and properties of DeKalb are now listed.");
 
-                residence_listbox.Items.Clear();  //reset the text so only DeKalb Properties will be listed
 
-                residence_listbox.Items.Add("Houses:");
-                residence_listbox.Items.Add("----------------");
+            }
 
-                foreach (Property prop in DeKalb.Props)
-                {
+        }
 
-                    //check if the property object is a House
-                    if (prop.GetType() == typeof(House))
-                    {
-                        House tempHouse = prop as House;  //typecast prop as a House object
+        private void sycamore_radio_button_CheckedChanged(object sender, EventArgs e)
+        {
 
-                        if (tempHouse != null)  //protect against failed typecast
-                        {
+            if (sycamore_radio_button.Checked == true)
+            {
 
-                            residence_listbox.Items.Add(tempHouse);  //utilize overloaded ToString to directly add tempHouse to residence listbox
 
-                        }
-                        else
-                        {
-                            throw new ArgumentException("[Property]: argument is not a House.");
-                        }
-                    }
-                }
+                person_listbox.Items.Clear();  //reset text so only the desired Community's residents are displayed
+                residence_listbox.Items.Clear(); //reset the text so only Sycamore Properties will be listed
+                new_resident_residence_comboBox.Items.Clear(); //Reset new resident combobox
 
-                residence_listbox.Items.Add("");
-                residence_listbox.Items.Add("Apartments:");
-                residence_listbox.Items.Add("----------------");
+                //Repopulate list and comboboxes with Sycamore properties
+                populatePersonListBox();
+                populateResidenceListBox();
+                populateNewResidentComboBox();
 
-                foreach (Property prop in DeKalb.Props)
-                {
-
-                    //Only print the Apartment objects in the DeKalb Properties
-                    if (prop.GetType() == typeof(Apartment))
-                    {
-                        Apartment tempApt = prop as Apartment;  //typecast Property as an Apartment object
-
-                        if (tempApt != null)  //protect against failed typecast
-                        {
-
-                            residence_listbox.Items.Add(tempApt);  //utilize ToString to add tempApt directly to residence listbox
-
-                        }
-                        else
-                        {
-                            throw new ArgumentException("[Property]: argument is not an Apartment.");
-                        }
-                    }
-                }
-
-                person_listbox.Items.Clear();  //reset text so only the desired Communities residents are displayed
-
-                //loop through each resident that lives in DeKalb
-                foreach (Person res in DeKalb.Residents)
-                {
-
-                    person_listbox.Items.Add(res);  //utiilize ToString to add res directly to person listbox
-
-                }
+                output_listbox.Items.Add("The residents and properties of Sycamore are now listed.");
 
             }
 
@@ -320,54 +484,6 @@ namespace KyleSean_Assign2
 
             residence_listbox.Items.Add("Houses:");
             residence_listbox.Items.Add("----------------");
-
-            //loop through each Property in the Sycamore Community
-            foreach (Property prop in Sycamore.Props)
-            {
-
-                //check if the Property is a House
-                if (prop.GetType() == typeof(House))
-                {
-                    House tempHouse = prop as House;  //typecast the Property as a House
-
-                    if (tempHouse != null)  //protect against failed typecast
-                    {
-
-                        residence_listbox.Items.Add(tempHouse);  //utilize overloaded ToString to add tempHouse directly to residence listbox
-
-                    }
-                    else
-                    {
-                        throw new ArgumentException("[Property]: argument is not a House.");
-                    }
-                }
-            }
-
-            residence_listbox.Items.Add("");
-            residence_listbox.Items.Add("Apartments:");
-            residence_listbox.Items.Add("----------------");
-
-            //loop through Properties in the Sycamore Community
-            foreach (Property prop in Sycamore.Props)
-            {
-
-                //check if the property is an Apartment 
-                if (prop.GetType() == typeof(Apartment))
-                {
-                    Apartment tempApt = prop as Apartment;  //typecast the property as an Apartment 
-
-                    if (tempApt != null)   //protect against failed typecast
-                    {
-
-                        residence_listbox.Items.Add(tempApt);  //utilize overloaded ToString to directly add tempApt to residence listbox
-
-                    }
-                    else
-                    {
-                        throw new ArgumentException("[Property]: argument is not an Apartment.");
-                    }
-                }
-            }
 
             person_listbox.Items.Clear();  //reset text so only the desired Communities residents are displayed
 
@@ -387,17 +503,20 @@ namespace KyleSean_Assign2
             if(residence_listbox.SelectedItem != null)
             {
 
+                //Typecast selected item as a property
                 Property prop = residence_listbox.SelectedItem as Property;
 
+                //Flip for-sale status
                 prop.ForSale = !prop.ForSale;
 
+                //Get the index of the selected item
                 int index = residence_listbox.Items.IndexOf(residence_listbox.SelectedItem);
 
+                //Remove selected item
                 residence_listbox.Items.RemoveAt(index);
 
+                //Re-insert item so it shows the proper (not) for-sale string
                 residence_listbox.Items.Insert(index, prop);
-
-                residence_listbox.SelectedIndex = index;
 
                 /*
                 if (residence_listbox.SelectedItem.ToString().Length > 30)
@@ -422,6 +541,7 @@ namespace KyleSean_Assign2
                 }
             */
             }
+            //Catch if a property is not selected
             else
             {
 
@@ -713,5 +833,224 @@ namespace KyleSean_Assign2
                 }
             }
         }
+
+        /*********************************************************************************
+         Method     : new_property_apt_textbox_TextChanged
+         Purpose    : Disables control of the floor increment box and the garage checkbox
+                      for a new property if the apartment textbox contains text on change.
+                      Otherwise, it enables them.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e - Arguments sent by event
+         Returns    : N/A
+        *********************************************************************************/
+        private void new_property_apt_textbox_TextChanged(object sender, EventArgs e)
+        {
+
+            if (new_property_apt_textbox.TextLength != 0)
+            {
+
+                new_property_garage_checkBox.Enabled = false;
+                new_property_floors_numericUpDown.Enabled = false;
+
+            }
+            else
+            {
+
+                new_property_garage_checkBox.Enabled = true;
+                new_property_floors_numericUpDown.Enabled = true;
+
+            }
+
+        }
+
+        private void add_new_property_button_Click(object sender, EventArgs e)
+        {
+
+            //Check if the input in the new property listbox is valid.
+            //If it is, continue with property creation.
+            //If it is not, checkPropertyInput displays an error box.
+            if(checkPropertyInput() == true)
+            {
+
+                //New ID value. Needs to be incremented to an unused ID first
+                uint newID = 0;
+
+                //Loops through the ID dictionary sequentially until it finds one that is not in use
+                foreach (UInt32 id in ids.Keys)
+                {
+
+                    if (id != newID)
+                    {
+
+                        break;
+
+                    }
+
+                    newID++;
+
+                }
+
+                //Add new ID value to dictionary so it can't be used again.
+                ids.Add(newID, newID);
+
+                //This block creates apartments if there is a unit provided.
+                if (new_property_apt_textbox.TextLength > 0)
+                {
+
+                    if (dekalb_radio_button.Checked == true)
+                    {
+
+                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), "F");
+
+                        DeKalb.addProperty(newApartment);
+
+                    }
+                    else if (sycamore_radio_button.Checked == true)
+                    {
+
+                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), "F");
+
+                        Sycamore.addProperty(newApartment);
+
+                    }
+
+                }
+                //This block creates houses if there is no apartment unit.
+                else {
+
+                    //String to hold the new garage input value.
+                    //Using a string instead of a bool allows use of the original house constructor.
+                    string garageVal;
+
+                    //If the garage checkbox is checked, pass T for true. Pass F for false otherwise.
+                    if (new_property_garage_checkBox.Checked == true)
+                    {
+
+                        garageVal = "T";
+
+                    }
+                    else
+                    {
+
+                        garageVal = "F";
+
+                    }
+
+                    //If the DeKalb radio button is active, create a house with the correct community and zipcode.
+                    //Then, add it to the DeKalb community.
+                    if (dekalb_radio_button.Checked == true)
+                    {
+
+                        House newHouse = new House(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), garageVal, "F", Convert.ToUInt32(new_property_floors_numericUpDown.Value));
+
+                        DeKalb.addProperty(newHouse);
+
+                    }
+                    //Same as above, but for Sycamore.
+                    else if (sycamore_radio_button.Checked == true)
+                    {
+
+                        House newHouse = new House(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), garageVal, "F", Convert.ToUInt32(new_property_floors_numericUpDown.Value));
+
+                        Sycamore.addProperty(newHouse);
+
+                    }
+                    //Capture case where no radio buttons are active.
+                    else
+                    {
+
+                        MessageBox.Show("Neither of the communities are selected\nPlease select a community to add the property to.", "Error");
+
+                    }
+
+                }
+
+                //Clear and repopulate the residence listbox.
+                residence_listbox.Items.Clear();
+                populateResidenceListBox();
+
+                //Clear and repopulate new resident residence combobox
+                new_resident_residence_comboBox.Items.Clear();
+                populateNewResidentComboBox();
+
+            }
+
+        }
+
+        /*********************************************************************************
+         Method     : checkPropertyInput
+         Purpose    : Checks the current values in the new property listbox and checks if
+                      they exist/if they hold correct values for their property
+         Parameters : N/A
+         Returns    : True if string passes, false if it fails
+        *********************************************************************************/
+        private bool checkPropertyInput()
+        {
+
+            //Constructed output string.
+            //For each error, a new line is added to this string.
+            string errorOutput = "";
+            //Integer used as an out when checking for an integer in the street address
+            int test = 0;
+
+            //Catch if there is nothing in the street address box
+            if (new_property_street_address_textbox.TextLength == 0)
+            {
+
+                errorOutput += "Street address cannot be empty.\n";
+
+            }
+            //If there is something in the street address textbox, make sure that it is in the
+            //proper format of having an address number first. Otherwise, CompareTo will not work.
+            else if (int.TryParse(new_property_street_address_textbox.Text.Split(' ')[0], out test) == false)
+            {
+
+                errorOutput += "Street address must start with a number.\n";
+
+            }
+            //The following catches were added before minimum values were set for the
+            //rest of the boxes. They are kept here for preservation.
+            /*
+            if (new_property_square_footage_numericUpDown.Value <= 0)
+            {
+
+                errorOutput += "Square footage must contain a value greater than 0.\n";
+
+            }
+            if (new_property_bedrooms_numericUpDown.Value <= 0)
+            {
+
+                errorOutput += "No bedrooms? Are you sleeping on the floor?\n";
+
+            }
+            if (new_property_baths_numericUpDown.Value <= 0)
+            {
+
+                errorOutput += "No bathrooms? Bring a bucket.\n";
+
+            }
+            if (new_property_apt_textbox.Text.Length > 0 && new_property_floors_numericUpDown.Value <= 0)
+            {
+
+                errorOutput += "No floors? Does the house even exist?";
+
+            }
+            */
+
+            //If the error string contains anything, create a message box with the new string and
+            //return false (failed).
+            if(errorOutput.Length > 0)
+            {
+
+                MessageBox.Show(errorOutput, "Invalid property values");
+
+                return false;
+
+            }
+            //Otherwise, return true (passed).
+            return true;
+
+        }
+
     }
 }
