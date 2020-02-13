@@ -1418,15 +1418,11 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                             MessageBox.Show(anon.FullName + " was removed as a resident from: " + prop.StreetAddr);
                             return;
                         }
-
-                        //the person is not a resident at the property, print an error
-                        else
-                        {
-
-                            MessageBox.Show(anon.FullName + " is not a resident at: " + prop.StreetAddr + ". Please verify residents in the output box.",
-                                            "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
+
+                    //If this line is reached, the Person selected IS NOT a resident at the Property selected. Print an error and take no action
+                    MessageBox.Show(anon.FullName + " is not a resident at: " + prop.StreetAddr + ". Please verify residents in the output box.",
+                                            "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
