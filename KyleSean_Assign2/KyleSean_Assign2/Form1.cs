@@ -1,4 +1,17 @@
-﻿using System;
+﻿/*********************************************************************************
+ CSCI 473 - Assignment 2 - Spring 2020
+
+ Programmers : Kyle Schultz and Sean Kohl
+ Z-IDs       : z1837807   and   z1836529
+ Date Due    : Thursday, Debruary 13th, 2020
+
+ Purpose: This program will read Person, Apartment, and House files to populate
+           various objects that will be created. The user may then use the UI to 
+           select various operations that can be handled with the information that
+           is read in.
+*********************************************************************************/
+
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +57,7 @@ namespace KyleSean_Assign2
          Returns    : N/A
         *********************************************************************************/
 
-        public static void readApartmentFile(Community comm, string dir, string file, Dictionary<uint,uint> ids)
+public static void readApartmentFile(Community comm, string dir, string file, Dictionary<uint,uint> ids)
         {
             string input;
             uint inPropID;
