@@ -521,10 +521,13 @@ namespace KyleSean_Assign2
                 int index = residence_listbox.Items.IndexOf(residence_listbox.SelectedItem);
 
                 //Remove selected item
-                residence_listbox.Items.RemoveAt(index);
+                //residence_listbox.Items.RemoveAt(index);
 
                 //Re-insert item so it shows the proper (not) for-sale string
-                residence_listbox.Items.Insert(index, prop);
+                //residence_listbox.Items.Insert(index, prop);
+                residence_listbox.Items.Clear();
+                populateResidenceListBox();
+                return;
 
                 /*
                 if (residence_listbox.SelectedItem.ToString().Length > 30)
