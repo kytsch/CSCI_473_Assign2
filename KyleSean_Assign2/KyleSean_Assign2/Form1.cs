@@ -415,11 +415,6 @@ namespace KyleSean_Assign2
             
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void output_label_Click(object sender, EventArgs e)
         {
 
@@ -1362,6 +1357,67 @@ namespace KyleSean_Assign2
             else
             {
                 MessageBox.Show("Please select both a Person and Property to add a resident to a household.");
+            }
+        }
+
+        /*********************************************************************************
+         Method     : remove_resident_button_Click
+         Purpose    : When the user clicks the "Remove Resident" button, a Person and Property
+                       must be selected from each of the list boxes (Person and Residence). If
+                       the selected Person is a resident at the selected Property, notify the user
+                       of action taken and remove them from the Property. If they are not a resident,
+                       notify the user and take no action.
+                       be taken.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
+
+        private void remove_resident_button_Click(object sender, EventArgs e)
+        {
+            //check to make sure the user has both a Person and Property selected from the two list boxes
+            if (residence_listbox.SelectedIndex != -1 && person_listbox.SelectedIndex != -1)
+            {
+                Property prop = residence_listbox.SelectedItem as Property;  //typecast selected residence as a Property object 
+                Person anon = person_listbox.SelectedItem as Person;  //typecast selected person and a Person object 
+
+                if (prop != null && anon != null)  //protect against failed typecasting 
+                {
+
+                    foreach (uint id in anon.ResidenceIds)
+                    {
+
+                        //check if the Person selected is a resident at the Property selected
+                        if (id == prop.PropID)
+                        {
+
+                            anon.ResidenceIds.Remove(prop.PropID);  //remove the property ID from the persons residence IDs
+
+                            //Increment then decrement the residence listbox selected index to "refresh" and show the user the action
+                            //they have taken in the output box
+                            residence_listbox.SelectedIndex += 1;
+                            residence_listbox.SelectedIndex -= 1;
+
+                            //let the user know action has been taken
+                            MessageBox.Show(anon.FullName + " was removed as a resident from: " + prop.StreetAddr);
+                            return;
+                        }
+
+                        //the person is not a resident at the property, print an error
+                        else
+                        {
+
+                            MessageBox.Show(anon.FullName + " is not a resident at: " + prop.StreetAddr + ". Please verify residents in the output box.",
+                                            "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+
+            //let the user know they must select both a Property and Person from the respective listbox
+            else
+            {
+                MessageBox.Show("Please select both a Person and Property to remove a resident from a household.");
             }
         }
     }
