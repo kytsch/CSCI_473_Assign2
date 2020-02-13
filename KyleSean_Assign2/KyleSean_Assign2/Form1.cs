@@ -471,6 +471,16 @@ namespace KyleSean_Assign2
 
         }
 
+        /*********************************************************************************
+         Method     : sycamore_radio_button_Click
+         Purpose    : When the user selects the Sycamore radio button, list the people
+                       and Properties in the Sycamore Community in their respective
+                       list box. Inform the user of the action taken in the output box.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
+
         private void sycamore_radio_button_Click(object sender, EventArgs e)
         {
             output_listbox.Items.Add("The residents and properties of Sycamore are now listed.");
@@ -546,6 +556,16 @@ namespace KyleSean_Assign2
 
         }
 
+        /*********************************************************************************
+         Method     : person_listbox_SelectedIndexChanged
+         Purpose    : When the user selects a Person from the person listbox, display 
+                       in the output box some information about the Person and each Street
+                       Address that the person lives 
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
+
         private void person_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Person anon = person_listbox.SelectedItem as Person;  //typecast the selected item as a Person 
@@ -605,6 +625,16 @@ namespace KyleSean_Assign2
                 throw new ArgumentException("[Person]: argument is not a Person.");
             }
         }
+
+        /*********************************************************************************
+         Method     : residence_listbox_SelectedIndexChanged
+         Purpose    : When the user selects a Property from the residence listbox, display 
+                       in the output box some information about the Property and each person
+                       that resides there
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
 
         private void residence_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1055,6 +1085,21 @@ namespace KyleSean_Assign2
 
         }
 
+        /*********************************************************************************
+         Method     : add_resident_button_Click
+         Purpose    : When the user clicks the "Buy Property" button, a Person and Property
+                       must be selected from each of the list boxes (Person and Residence). 
+                       If the Person selected is not already a resident at the Property 
+                       selected, add the Person as a resident. Display a message informing
+                       the user the Person has been added to the selected Property and 
+                       display these changes in the output box. If the user tries to add
+                       a resident to a Property which they already live, display an error and
+                       take no action.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
+
         private void add_resident_button_Click(object sender, EventArgs e)
         {
 
@@ -1103,9 +1148,15 @@ namespace KyleSean_Assign2
 
         /*********************************************************************************
          Method     : buy_property_button_Click
-         Purpose    : Event the Buy Property
-         Parameters : 1. sender - 
-                      2. e      - 
+         Purpose    : When the user clicks the "Buy Property" button, a Person and Property
+                       must be selected from each of the list boxes (Person and Residence). 
+                       If the Property selected is FOR SALE, the user is notified of their action 
+                       and the property will be listed as NOT FOR SALE and the owner will be 
+                       changed to the Person selected. If the user tries to buy a Property 
+                       that is NOT FOR SALE, an error message will appear and no action will
+                       be taken.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
          Returns    : N/A
         *********************************************************************************/
 
