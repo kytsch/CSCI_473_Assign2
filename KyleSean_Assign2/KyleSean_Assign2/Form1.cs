@@ -42,8 +42,6 @@ namespace KyleSean_Assign2
             readHouseFile(Sycamore, "Sycamore", "r.txt", ids);
             readPersonFile(Sycamore, "Sycamore", "p.txt");
 
-            dekalb_radio_button.Checked = true;
-
         }
 
         /*********************************************************************************
@@ -200,13 +198,16 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
         public void readPersonFile(Community comm, string dir, string file)
         {
-
+            //Input line to be read to
             string input;
+            //Get the person file
             using (StreamReader inFile = new StreamReader("../../" + dir + "/" + file))
             {
-
+                //Read first line.
                 input = inFile.ReadLine();
 
+                //Continue getting arguments from the input strings and reading lines until there are
+                //no lines left.
                 while (input != null)
                 {
 
@@ -227,13 +228,14 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
         /*********************************************************************************
          Method     : populatePersonListBox
          Purpose    : Populates the listbox that displays people with residents from
-                      the currently-selected community
+                      the currently-selected community via radio buttons
          Parameters : N/A
          Returns    : N/A
         *********************************************************************************/
         private void populatePersonListBox()
         {
 
+            //If the Sycamore button is active, add each person from the Sycamore community to the listbox
             if (sycamore_radio_button.Checked == true)
             {
 
@@ -245,6 +247,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                 }
 
             }
+            //Otherwise, add each person from the DeKalb community.
             else
             {
 
@@ -270,9 +273,11 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
         private void populateResidenceListBox()
         {
 
+            //Create header for houses
             residence_listbox.Items.Add("Houses:");
             residence_listbox.Items.Add("----------------");
 
+            //If the Sycamore radio button is active, fetch properties from the Sycamore community
             if (sycamore_radio_button.Checked == true)
             {
 
@@ -298,6 +303,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                     }
                 }
 
+                //Separate apartments from houses with a new line and header
                 residence_listbox.Items.Add("");
                 residence_listbox.Items.Add("Apartments:");
                 residence_listbox.Items.Add("----------------");
@@ -326,6 +332,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
 
             }
+            //If the DeKalb button is active, list DeKalb properties
             else
             {
 
@@ -352,6 +359,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                     }
                 }
 
+                //Separate apartments from houses with a new line and header.
                 residence_listbox.Items.Add("");
                 residence_listbox.Items.Add("Apartments:");
                 residence_listbox.Items.Add("----------------");
@@ -438,6 +446,19 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
         }
 
+        /*********************************************************************************
+         Method     : dekalb_radio_button_Checked
+         Purpose    : When the DeKalb radio button's status changes, list the people
+                       and Properties in the DeKalb Community in their respective
+                       list box if the radio button is enabled.
+                       Inform the user of the action taken in the output box.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+
+         Note: Left here as legacy code in case it needs to be used later. Currently, the
+         Click function is used to perform the same function
+        *********************************************************************************/
         private void dekalb_radio_button_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -460,6 +481,20 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
         }
 
+
+        /*********************************************************************************
+         Method     : sycamore_radio_button_Checked
+         Purpose    : When Sycamore radio button's status changes, list the people
+                       and Properties in the Sycamore Community in their respective
+                       list box if the radio button is enabled.
+                       Inform the user of the action taken in the output box.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+
+         Note: Left here as legacy code in case it needs to be used later. Currently, the
+         Click function is used to perform the same function
+        *********************************************************************************/
         private void sycamore_radio_button_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -494,24 +529,50 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
         private void sycamore_radio_button_Click(object sender, EventArgs e)
         {
-            output_listbox.Items.Add("The residents and properties of Sycamore are now listed.");
-
+            person_listbox.Items.Clear();  //reset text so only the desired Community's residents are displayed
             residence_listbox.Items.Clear(); //reset the text so only Sycamore Properties will be listed
+            new_resident_residence_comboBox.Items.Clear(); //Reset new resident combobox
 
-            residence_listbox.Items.Add("Houses:");
-            residence_listbox.Items.Add("----------------");
+            //Repopulate list and comboboxes with Sycamore properties
+            populatePersonListBox();
+            populateResidenceListBox();
+            populateNewResidentComboBox();
 
-            person_listbox.Items.Clear();  //reset text so only the desired Communities residents are displayed
-
-            foreach (Person res in Sycamore.Residents)
-            {
-
-                person_listbox.Items.Add(res);  //utilize overloaded ToString to directly add res to person listbox
-
-            }
+            output_listbox.Items.Add("The residents and properties of Sycamore are now listed.");
         }
 
+        /*********************************************************************************
+         Method     : dekalb_radio_button_Click
+         Purpose    : When the user selects the DeKalb radio button, list the people
+                       and Properties in the DeKalb Community in their respective
+                       list box. Inform the user of the action taken in the output box.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
 
+        private void dekalb_radio_button_Click(object sender, EventArgs e)
+        {
+            person_listbox.Items.Clear();  //reset text so only the desired Community's residents are displayed
+            residence_listbox.Items.Clear(); //reset the text so only Sycamore Properties will be listed
+            new_resident_residence_comboBox.Items.Clear(); //Reset new resident combobox
+
+            //Repopulate list and comboboxes with Sycamore properties
+            populatePersonListBox();
+            populateResidenceListBox();
+            populateNewResidentComboBox();
+
+            output_listbox.Items.Add("The residents and properties of DeKalb are now listed.");
+        }
+
+        /*********************************************************************************
+         Method     : toggle_for_sale_button_Click
+         Purpose    : On click, toggle the currently-selected property in the residences
+                      listbox as (not) for sale and update the listbox.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
         private void toggle_for_sale_button_Click(object sender, EventArgs e)
         {
 
@@ -537,28 +598,6 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                 populateResidenceListBox();
                 return;
 
-                /*
-                if (residence_listbox.SelectedItem.ToString().Length > 30)
-                {
-                    
-                    string notForSaleString = residence_listbox.SelectedItem.ToString().Substring(0, 29);
-
-                    int index = residence_listbox.Items.IndexOf(residence_listbox.SelectedItem);
-
-                    residence_listbox.Items.RemoveAt(index);
-
-                    residence_listbox.Items.Insert(index, notForSaleString);
-
-                    
-
-            }
-            else
-                {
-
-                    
-
-                }
-            */
             }
             //Catch if a property is not selected
             else
@@ -910,6 +949,15 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
         }
 
+        /*********************************************************************************
+         Method     : add_new_property_button_Click
+         Purpose    : On click, if a community is selected and the input in the new
+                      property groupbox is valid, create a new property and add it to the
+                      respective community's properties list.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
         private void add_new_property_button_Click(object sender, EventArgs e)
         {
 
@@ -1098,6 +1146,15 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
         }
 
+        /*********************************************************************************
+         Method     : add_new_resident_button_Click
+         Purpose    : On click, if a community is selected and the input in the new
+                      resident groupbox is valid, create a new resident and add it to the
+                      respective community's residents list.
+         Parameters : 1. sender - Object that uses this event code
+                      2. e      - Arguments sent by the event
+         Returns    : N/A
+        *********************************************************************************/
         private void add_new_resident_button_Click(object sender, EventArgs e)
         {
 
