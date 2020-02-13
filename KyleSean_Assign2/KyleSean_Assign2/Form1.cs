@@ -1255,7 +1255,7 @@ namespace KyleSean_Assign2
          Parameters : 1. sender - Object that uses this event code
                       2. e      - Arguments sent by the event
          Returns    : N/A
-        *********************************************************************************/]
+        *********************************************************************************/
         private void add_resident_button_Click(object sender, EventArgs e)
         {
 
