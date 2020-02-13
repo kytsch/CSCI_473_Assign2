@@ -155,8 +155,6 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
                     }
 
-                    Console.WriteLine("I should not print after exception");
-
                     //Split the input string into the fields that will be passes to the House constructor
                     inOwnerID = Convert.ToUInt32(input.Split('\t')[1], 10);
                     inX = Convert.ToUInt32(input.Split('\t')[2], 10);
@@ -538,6 +536,8 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
             populateResidenceListBox();
             populateNewResidentComboBox();
 
+            new_resident_residence_comboBox.SelectedIndex = 0;
+
             output_listbox.Items.Add("The residents and properties of Sycamore are now listed.");
         }
 
@@ -561,6 +561,8 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
             populatePersonListBox();
             populateResidenceListBox();
             populateNewResidentComboBox();
+
+            new_resident_residence_comboBox.SelectedIndex = 0;
 
             output_listbox.Items.Add("The residents and properties of DeKalb are now listed.");
         }
@@ -961,111 +963,122 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
         private void add_new_property_button_Click(object sender, EventArgs e)
         {
 
-            //Check if the input in the new property listbox is valid.
-            //If it is, continue with property creation.
-            //If it is not, checkPropertyInput displays an error box.
-            if(checkPropertyInput() == true)
+            //Check if the input in the new property listbox is valid and that a community is selected.
+            //If everything is fine, continue with property creation.
+            //If the input is invalid, checkPropertyInput displays an error box.
+            //If there is no community selected, then the output box asks the user to select a property.
+            if(dekalb_radio_button.Checked == true || sycamore_radio_button.Checked == true)
             {
 
-                //New ID value. Needs to be incremented to an unused ID first
-                uint newID = 0;
-
-                //Loops through the ID dictionary sequentially until it finds one that is not in use
-                while (ids.ContainsKey(newID))
+                if(checkPropertyInput() == true)
                 {
 
-                    newID++;
+                    //New ID value. Needs to be incremented to an unused ID first
+                    uint newID = 0;
 
-                }
-
-
-                output_listbox.Items.Add("New ID set to " + newID);
-
-                //Add new ID value to dictionary so it can't be used again.
-                ids.Add(newID, newID);
-
-                //This block creates apartments if there is a unit provided.
-                if (new_property_apt_textbox.TextLength > 0)
-                {
-
-                    //If the DeKalb radio button is active, create an apartment with the correct community and zipcode.
-                    //Then, add it to the DeKalb community.
-                    if (dekalb_radio_button.Checked == true)
+                    //Loops through the ID dictionary sequentially until it finds one that is not in use
+                    while (ids.ContainsKey(newID))
                     {
 
-                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), new_property_apt_textbox.Text);
-
-                        DeKalb.addProperty(newApartment);
-
-                    }
-                    //Sme as above, but for Sycamore.
-                    else if (sycamore_radio_button.Checked == true)
-                    {
-
-                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), new_property_apt_textbox.Text);
-
-                        Sycamore.addProperty(newApartment);
+                        newID++;
 
                     }
 
-                }
-                //This block creates houses if there is no apartment unit.
-                else {
+                    //Add new ID value to dictionary so it can't be used again.
+                    ids.Add(newID, newID);
 
-                    //String to hold the new garage input value.
-                    //Using a string instead of a bool allows use of the original house constructor.
-                    string garageVal;
-
-                    //If the garage checkbox is checked, pass T for true. Pass F for false otherwise.
-                    if (new_property_garage_checkBox.Checked == true)
+                    //This block creates apartments if there is a unit provided.
+                    if (new_property_apt_textbox.TextLength > 0)
                     {
 
-                        garageVal = "T";
+                        //If the DeKalb radio button is active, create an apartment with the correct community and zipcode.
+                        //Then, add it to the DeKalb community.
+                        if (dekalb_radio_button.Checked == true)
+                        {
+
+                            Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), new_property_apt_textbox.Text);
+
+                            DeKalb.addProperty(newApartment);
+
+                        }
+                        //Sme as above, but for Sycamore.
+                        else if (sycamore_radio_button.Checked == true)
+                        {
+
+                            Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), new_property_apt_textbox.Text);
+
+                            Sycamore.addProperty(newApartment);
+
+                        }
 
                     }
+                    //This block creates houses if there is no apartment unit.
                     else
                     {
 
-                        garageVal = "F";
+                        //String to hold the new garage input value.
+                        //Using a string instead of a bool allows use of the original house constructor.
+                        string garageVal;
+
+                        //If the garage checkbox is checked, pass T for true. Pass F for false otherwise.
+                        if (new_property_garage_checkBox.Checked == true)
+                        {
+
+                            garageVal = "T";
+
+                        }
+                        else
+                        {
+
+                            garageVal = "F";
+
+                        }
+
+                        //If the DeKalb radio button is active, create a house with the correct community and zipcode.
+                        //Then, add it to the DeKalb community.
+                        if (dekalb_radio_button.Checked == true)
+                        {
+
+                            House newHouse = new House(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), garageVal, "F", Convert.ToUInt32(new_property_floors_numericUpDown.Value));
+
+                            DeKalb.addProperty(newHouse);
+
+                        }
+                        //Same as above, but for Sycamore.
+                        else if (sycamore_radio_button.Checked == true)
+                        {
+
+                            House newHouse = new House(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), garageVal, "F", Convert.ToUInt32(new_property_floors_numericUpDown.Value));
+
+                            Sycamore.addProperty(newHouse);
+
+                        }
+                        //Capture case where no radio buttons are active.
+                        else
+                        {
+
+                            MessageBox.Show("Neither of the communities are selected\nPlease select a community to add the property to.", "Error");
+
+                        }
 
                     }
 
-                    //If the DeKalb radio button is active, create a house with the correct community and zipcode.
-                    //Then, add it to the DeKalb community.
-                    if (dekalb_radio_button.Checked == true)
-                    {
+                    //Clear and repopulate the residence listbox.
+                    residence_listbox.Items.Clear();
+                    populateResidenceListBox();
 
-                        House newHouse = new House(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), garageVal, "F", Convert.ToUInt32(new_property_floors_numericUpDown.Value));
-
-                        DeKalb.addProperty(newHouse);
-
-                    }
-                    //Same as above, but for Sycamore.
-                    else if (sycamore_radio_button.Checked == true)
-                    {
-
-                        House newHouse = new House(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), garageVal, "F", Convert.ToUInt32(new_property_floors_numericUpDown.Value));
-
-                        Sycamore.addProperty(newHouse);
-
-                    }
-                    //Capture case where no radio buttons are active.
-                    else
-                    {
-
-                        MessageBox.Show("Neither of the communities are selected\nPlease select a community to add the property to.", "Error");
-
-                    }
+                    //Clear and repopulate new resident residence combobox
+                    new_resident_residence_comboBox.Items.Clear();
+                    populateNewResidentComboBox();
 
                 }
 
-                //Clear and repopulate the residence listbox.
-                residence_listbox.Items.Clear();
-                populateResidenceListBox();
+            }
+            //If there is no community selected, inform the user.
+            else
+            {
 
-                //Clear and repopulate new resident residence combobox
-                new_resident_residence_comboBox.Items.Clear();
-                populateNewResidentComboBox();
+                output_listbox.Items.Add("Please select a community before adding a property.");
 
             }
 
@@ -1074,7 +1087,9 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
         /*********************************************************************************
          Method     : checkPropertyInput
          Purpose    : Checks the current values in the new property listbox and checks if
-                      they exist/if they hold correct values for their property
+                      they exist/if they hold correct values for their property. Also
+                      checks for duplicate property addresses and, if applicable,
+                      apartment units.
          Parameters : N/A
          Returns    : True if string passes, false if it fails
         *********************************************************************************/
@@ -1142,36 +1157,98 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
             }
 
+            //If the DeKalb radio button is checked, then check the DeKalb properties to see if the street address
+            //(and apartment unit, if applicable) exist in the DeKalb community.
             if(dekalb_radio_button.Checked == true)
             {
 
+                //Loop through each DeKalb property
                 foreach(Property prop in DeKalb.Props)
                 {
 
+                    //Catch if the street addresses of the new property and the current DeKalb property are the same.
                     if(prop.StreetAddr.ToLower() == new_property_street_address_textbox.Text.ToLower())
                     {
 
-                        MessageBox.Show("There is already a property listed at " + prop.StreetAddr + " in DeKalb!", "Pre-existing property");
+                        //If the user is trying to add an apartment and the DeKalb property with the same address is an apartment,
+                        //compare their units.
+                        if(prop.GetType() == typeof(Apartment) && new_property_apt_textbox.Text != "")
+                        {
 
-                        return false;
+                            //Typecast the current DeKalb property as an apartment.
+                            Apartment apart = prop as Apartment;
+
+                            //If the units match, then there is already an apartment at the entered address with the entered unit.
+                            //Inform the user and return false.
+                            if(apart.Unit == new_property_apt_textbox.Text)
+                            {
+
+                                MessageBox.Show("There is already an apartment listed at " + prop.StreetAddr + " with unit " + apart.Unit + " in DeKalb!", "Pre-existing property");
+
+                                return false;
+
+                            }
+
+                        }
+                        //If the previous condition is not true, then the user is either trying to add a house that already exists or are trying to create
+                        //a house at the same address as an aparment (or vice versa). Inform the user that something occupies the address and return false.
+                        else
+                        {
+
+                            MessageBox.Show("There is already a property listed at " + prop.StreetAddr + " in DeKalb!", "Pre-existing property");
+
+                            return false;
+
+                        }
 
                     }
 
                 }
 
             }
+            //If the Sycamore radio button is checked, then check the DeKalb properties to see if the street address
+            //(and apartment unit, if applicable) exist in the Sycamore community.
             else
             {
 
+                //Loop through each Sycamore property
                 foreach (Property prop in Sycamore.Props)
                 {
 
+                    //Catch if the street addresses of the new property and the current Sycamore property are the same.
                     if (prop.StreetAddr.ToLower() == new_property_street_address_textbox.Text.ToLower())
                     {
 
-                        MessageBox.Show("There is already a property listed at " + prop.StreetAddr + " in Sycamore!", "Pre-existing property");
+                        //If the user is trying to add an apartment and the Sycamore property with the same address is an apartment,
+                        //compare their units.
+                        if (prop.GetType() == typeof(Apartment) && new_property_apt_textbox.Text != "")
+                        {
 
-                        return false;
+                            //Typecast the current Sycamore property as an apartment
+                            Apartment apart = prop as Apartment;
+
+                            //If the units match, then there is already an apartment at the entered address with the entered unit.
+                            //Inform the user and return false.
+                            if (apart.Unit == new_property_apt_textbox.Text)
+                            {
+
+                                MessageBox.Show("There is already an apartment listed at " + prop.StreetAddr + " with unit " + apart.Unit + " in Sycamore!", "Pre-existing property");
+
+                                return false;
+
+                            }
+
+                        }
+                        //If the previous condition is not true, then the user is either trying to add a house that already exists or are trying to create
+                        //a house at the same address as an aparment (or vice versa). Inform the user that something occupies the address and return false.
+                        else
+                        {
+
+                            MessageBox.Show("There is already a property listed at " + prop.StreetAddr + " in Sycamore!", "Pre-existing property");
+
+                            return false;
+
+                        }
 
                     }
 
@@ -1179,7 +1256,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
 
             }
 
-            //Otherwise, return true (passed).
+            //If at this point, there should be no problems with the input; return true (passed).
             return true;
 
         }
@@ -1196,85 +1273,101 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
         private void add_new_resident_button_Click(object sender, EventArgs e)
         {
 
-            if(checkResidentInput() == true)
+            //Check if the input in the new property listbox is valid and that a community is selected.
+            //If everything is fine, continue with property creation.
+            //If the input is invalid, checkPropertyInput displays an error box.
+            //If there is no community selected, then the output box asks the user to select a property.
+            if (dekalb_radio_button.Checked == true || sycamore_radio_button.Checked == true)
             {
 
-                //New ID value. Needs to be incremented to an unused ID first
-                uint newID = 0;
-
-                while (ids.ContainsKey(newID))
+                if(checkResidentInput() == true)
                 {
 
-                    newID++;
+                    //New ID value. Needs to be incremented to an unused ID first
+                    uint newID = 0;
 
-                }
-
-                //Add new ID value to dictionary so it can't be used again.
-                ids.Add(newID, newID);
-
-                //New list of residences.
-                //Even though there will only be one property, the current constructor takes a list
-                List<uint> newResidenceIds = new List<uint>();
-
-                //Typecast the selected property as a Property so its ID can be fetched.
-                Property prop = new_resident_residence_comboBox.SelectedItem as Property;
-
-                //Add the property ID to the residence list.
-                newResidenceIds.Add(prop.PropID);
-
-                //Split the name into pieces so the first and last names can be filled
-                string[] name = new_resident_name_textbox.Text.Split(' ');
-
-                //Set the first name to the first entry in the name array, as it comes first.
-                string firstName = name[0];
-
-                //Create a new string for the last name.
-                string lastName = "";
-
-                //Since a last name can have multiple parts, take the rest of the name array's
-                //indices and build the last name.
-                for(int i = 1; i < name.Length; i++)
-                {
-
-                    lastName += name[i];
-
-                    //If there are more pieces of the last name, add a space.
-                    if(i < name.Length - 1)
+                    while (ids.ContainsKey(newID))
                     {
 
-                        lastName += " ";
+                        newID++;
 
                     }
 
+                    //Add new ID value to dictionary so it can't be used again.
+                    ids.Add(newID, newID);
+
+                    //New list of residences.
+                    //Even though there will only be one property, the current constructor takes a list
+                    List<uint> newResidenceIds = new List<uint>();
+
+                    //Typecast the selected property as a Property so its ID can be fetched.
+                    Property prop = new_resident_residence_comboBox.SelectedItem as Property;
+
+                    //Add the property ID to the residence list.
+                    newResidenceIds.Add(prop.PropID);
+
+                    //Split the name into pieces so the first and last names can be filled
+                    string[] name = new_resident_name_textbox.Text.Split(' ');
+
+                    //Set the first name to the first entry in the name array, as it comes first.
+                    string firstName = name[0];
+
+                    //Create a new string for the last name.
+                    string lastName = "";
+
+                    //Since a last name can have multiple parts, take the rest of the name array's
+                    //indices and build the last name.
+                    for (int i = 1; i < name.Length; i++)
+                    {
+
+                        lastName += name[i];
+
+                        //If there are more pieces of the last name, add a space.
+                        if (i < name.Length - 1)
+                        {
+
+                            lastName += " ";
+
+                        }
+
+                    }
+
+                    //Initialize the new person
+                    Person newResident = new Person(newID, firstName, lastName, new_resident_occupation_textbox.Text, new_resident_birthday_dateTimePicker.Value, newResidenceIds);
+
+                    //If the DeKalb radio button is active, add the new resident to the DeKalb community.
+                    if (dekalb_radio_button.Checked == true)
+                    {
+
+                        DeKalb.addResident(newResident);
+
+                    }
+                    //Same as above, but for Sycamore.
+                    else if (sycamore_radio_button.Checked == true)
+                    {
+                        Sycamore.addResident(newResident);
+
+                    }
+                    //Capture case where no radio buttons are active.
+                    else
+                    {
+
+                        MessageBox.Show("Neither of the communities are selected.\nPlease select a community to add the property to.", "Error");
+
+                    }
+
+                    //Clear and repopulate the person listbox to refresh it.
+                    person_listbox.Items.Clear();
+                    populatePersonListBox();
+
                 }
 
-                //Initialize the new person
-                Person newResident = new Person(newID, firstName, lastName, new_resident_occupation_textbox.Text, new_resident_birthday_dateTimePicker.Value, newResidenceIds);
+            }
+            //If no community is selected, inform the user.
+            else
+            {
 
-                //If the DeKalb radio button is active, add the new resident to the DeKalb community.
-                if (dekalb_radio_button.Checked == true)
-                {
-
-                    DeKalb.addResident(newResident);
-
-                }
-                //Same as above, but for Sycamore.
-                else if (sycamore_radio_button.Checked == true)
-                {
-                    Sycamore.addResident(newResident);
-
-                }
-                //Capture case where no radio buttons are active.
-                else
-                {
-
-                    MessageBox.Show("Neither of the communities are selected.\nPlease select a community to add the property to.", "Error");
-
-                }
-
-                //Clear and repopulate the person listbox to refresh it.
-                person_listbox.Items.Clear();
-                populatePersonListBox();
+                output_listbox.Items.Add("Please select a community before adding a resident.");
 
             }
 
@@ -1283,7 +1376,8 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
         /*********************************************************************************
          Method     : checkRedidentInput
          Purpose    : Checks the current values in the new resident listbox and checks if
-                      they exist/if they hold correct values for their property
+                      they exist/if they hold correct values for their property. Also
+                      checks for duplicate residents.
          Parameters : N/A
          Returns    : True if string passes, false if it fails
         *********************************************************************************/
@@ -1341,6 +1435,80 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                 MessageBox.Show(errorOutput, "Invalid property values");
 
                 return false;
+
+            }
+
+            //These next lines check for a duplicate resident.
+
+            //Split the name field apart so the first and last names can be captured individually.
+            string[] name = new_resident_name_textbox.Text.Split(' ');
+
+            //Get the entered first name.
+            string firstName = name[0];
+
+            //Begin a string for the last name.
+            string lastName = "";
+
+            //Since a last name can have multiple parts, build the last name with the rest of the name array.
+            for(int i = 1; i < name.Length; i++)
+            {
+
+                lastName += name[i];
+
+                //If there are more pieces of the last name, add a space.
+                if (i < name.Length - 1)
+                {
+
+                    lastName += " ";
+
+                }
+
+            }
+
+            //Set names to lower case for easy comparisons.
+            firstName = firstName.ToLower();
+            lastName = lastName.ToLower();
+
+            //If the DeKalb community is selected, compare all of the residents in the community against the new input.
+            if (dekalb_radio_button.Checked == true)
+            {
+
+                foreach (Person res in DeKalb.Residents)
+                {
+
+                    //Check birthday, name, and occupation for a full duplicate.
+                    //If the resident already exists, inform the user and return false.
+                    if (new_resident_birthday_dateTimePicker.Value == res.Birthday && firstName == res.FirstName.ToLower() && lastName == res.LastName.ToLower() && new_resident_occupation_textbox.Text.ToLower() == res.Occupation.ToLower())
+                    {
+
+                        MessageBox.Show("This resident already exists in the DeKalb community!", "Duplicate resident detected");
+
+                        return false;
+
+                    }
+
+                }
+
+            }
+            //If the Sycamore community is selected, compare all of the residents in the community against the new input.
+            else if (sycamore_radio_button.Checked == true)
+            {
+
+                foreach (Person res in Sycamore.Residents)
+                {
+
+                    //Check birthday, name, and occupation for a full duplicate.
+                    //If the resident already exists, inform the user and return false.
+                    if (new_resident_birthday_dateTimePicker.Value == res.Birthday && firstName == res.FirstName && lastName == res.LastName && new_resident_occupation_textbox.Text == res.Occupation)
+                    {
+
+                        MessageBox.Show("This resident already exists in the Sycamore community!", "Duplicate resident detected");
+
+                        return false;
+
+                    }
+
+                }
 
             }
 

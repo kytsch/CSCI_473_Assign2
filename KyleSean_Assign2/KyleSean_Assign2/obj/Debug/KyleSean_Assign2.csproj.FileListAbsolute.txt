@@ -25,3 +25,12 @@ C:\Users\Prips\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assig
 C:\Users\Prips\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csproj.GenerateResource.cache
 C:\Users\Prips\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.exe
 C:\Users\Prips\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.pdb
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csprojAssemblyReference.cache
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.Form1.resources
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.Properties.Resources.resources
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.csproj.GenerateResource.cache
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.exe
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\obj\Debug\KyleSean_Assign2.pdb
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.exe.config
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.exe
+G:\Users\Atlas\Documents\GitHub\CSCI_473_Assign2\KyleSean_Assign2\KyleSean_Assign2\bin\Debug\KyleSean_Assign2.pdb
