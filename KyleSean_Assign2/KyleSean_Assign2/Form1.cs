@@ -415,11 +415,6 @@ namespace KyleSean_Assign2
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
 
@@ -1217,6 +1212,107 @@ namespace KyleSean_Assign2
             return true;
 
         }
+        private void add_resident_button_Click(object sender, EventArgs e)
+        {
 
+            //check to make sure the user has both a Person and Property selected from the two list boxes
+            if(residence_listbox.SelectedIndex != -1 && person_listbox.SelectedIndex != -1)
+            {
+                Property prop = residence_listbox.SelectedItem as Property;  //typecast selected residence as a Property object 
+                Person anon = person_listbox.SelectedItem as Person;  //typecast selected person and a Person object 
+
+                if(prop != null && anon != null)  //protect against failed typecasting 
+                {
+
+                    //loop through each of the person's Residence IDs
+                    foreach(uint id in anon.ResidenceIds)
+                    {
+
+                        //if the property ID already exists in the person's Residence IDs, they are already a
+                        //resident. Let the user know and return
+                        if (id == prop.PropID)
+                        {
+                            MessageBox.Show(anon.FullName + " is already a resident at: " + prop.StreetAddr,
+                                            "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    anon.ResidenceIds.Add(prop.PropID);  //add the property ID to the list of places the person resides
+
+                    //Increment then decrement the residence listbox selected index to "refresh" and show the user the action
+                    //they have taken in the output box
+                    residence_listbox.SelectedIndex += 1;
+                    residence_listbox.SelectedIndex -= 1;
+
+                    //let the user know the action has taken place
+                    MessageBox.Show(anon.FullName + " has been added as a resident to: " + prop.StreetAddr);
+                }
+            }
+
+            //let the user know they must select both a Property and Person from the respective listbox
+            else
+            {
+                MessageBox.Show("Please select both a Person and Property to add a resident to a household.",
+                                "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /*********************************************************************************
+         Method     : buy_property_button_Click
+         Purpose    : Event the Buy Property
+         Parameters : 1. sender - 
+                      2. e      - 
+         Returns    : N/A
+        *********************************************************************************/
+
+        private void buy_property_button_Click(object sender, EventArgs e)
+        {
+            //check to make sure the user has both a Person and Property selected from the two list boxes
+            if (residence_listbox.SelectedIndex != -1 && person_listbox.SelectedIndex != -1)
+            {
+                Property prop = residence_listbox.SelectedItem as Property;  //typecast selected residence as a Property object 
+                Person anon = person_listbox.SelectedItem as Person;  //typecast selected person and a Person object 
+
+                if (prop != null && anon != null)  //protect against failed typecasting 
+                {
+
+                    //check if the property selected is FOR SALE
+                    if(prop.ForSale)
+                    {
+
+                        prop.OwnerID = anon.Id;  //set the Owner ID of the selected property to ID of selected person
+                        prop.ForSale = !prop.ForSale;  //set for sale value to FALSE becuase it was purchased
+
+                        //Increment then decrement the residence listbox selected index to "refresh" and show the user the action
+                        //they have taken in the output box
+                        residence_listbox.SelectedIndex += 1;
+                        residence_listbox.SelectedIndex -= 1;
+
+                        //reset the residence listbox to reflect the changes made
+                        residence_listbox.Items.Clear();
+                        populateResidenceListBox();
+
+                        //let the user know action has been taken
+                        MessageBox.Show(prop.StreetAddr + " was purchased by " + anon.FullName);
+                    }
+
+                    //the property selected was NOT FOR SALE, let the user know no action has been taken
+                    else
+                    {
+
+                        MessageBox.Show(prop.StreetAddr + " is NOT for sale. Please select a property that is marked with '*' indicating FOR SALE.",
+                                        "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
+
+            //let the user know they must select both a Property and Person from the respective listbox
+            else
+            {
+                MessageBox.Show("Please select both a Person and Property to add a resident to a household.");
+            }
+        }
     }
 }
