@@ -993,7 +993,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                     if (dekalb_radio_button.Checked == true)
                     {
 
-                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), "F");
+                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "DeKalb", "Illinois", "60115", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), new_property_apt_textbox.Text);
 
                         DeKalb.addProperty(newApartment);
 
@@ -1002,7 +1002,7 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                     else if (sycamore_radio_button.Checked == true)
                     {
 
-                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), "F");
+                        Apartment newApartment = new Apartment(newID, 0, 0, 0, new_property_street_address_textbox.Text, "Sycamore", "Illinois", "60178", "F", Convert.ToUInt32(new_property_bedrooms_numericUpDown.Value), Convert.ToUInt32(new_property_baths_numericUpDown.Value), Convert.ToUInt32(new_property_square_footage_numericUpDown.Value), new_property_apt_textbox.Text);
 
                         Sycamore.addProperty(newApartment);
 
@@ -1141,6 +1141,44 @@ public static void readApartmentFile(Community comm, string dir, string file, Di
                 return false;
 
             }
+
+            if(dekalb_radio_button.Checked == true)
+            {
+
+                foreach(Property prop in DeKalb.Props)
+                {
+
+                    if(prop.StreetAddr.ToLower() == new_property_street_address_textbox.Text.ToLower())
+                    {
+
+                        MessageBox.Show("There is already a property listed at " + prop.StreetAddr + " in DeKalb!", "Pre-existing property");
+
+                        return false;
+
+                    }
+
+                }
+
+            }
+            else
+            {
+
+                foreach (Property prop in Sycamore.Props)
+                {
+
+                    if (prop.StreetAddr.ToLower() == new_property_street_address_textbox.Text.ToLower())
+                    {
+
+                        MessageBox.Show("There is already a property listed at " + prop.StreetAddr + " in Sycamore!", "Pre-existing property");
+
+                        return false;
+
+                    }
+
+                }
+
+            }
+
             //Otherwise, return true (passed).
             return true;
 
